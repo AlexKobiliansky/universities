@@ -314,7 +314,7 @@ function Students() {
         </tbody>
       </table>
 
-      <Pagination items={students} onChangePage={onChangePage} pageSize={7}/>
+      <Pagination items={students} onChangePage={onChangePage} pageSize={10}/>
     </>
   );
 }

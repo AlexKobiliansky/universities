@@ -119,40 +119,40 @@ class Pagination extends React.Component {
         <li onClick={() => this.setPage(1)}
             className={classnames({
                 "disabled": pager.currentPage === 1},
-              "nav",
-              "navFirst",
-              "navExtreme"
-            )}>
+              "page-item",
+            )} >
+          <span className="page-link">Первая</span>
         </li>
         <li onClick={() => this.setPage(pager.currentPage - 1)}
             className={classnames({
                 "disabled": pager.currentPage === 1},
-              "nav",
-              "navFirst",
-            )}
-
-        >
+              "page-item",
+            )} >
+          <span className="page-link"><span aria-hidden="true">&laquo;</span></span>
         </li>
         {pager.pages.map((page, index) =>
           <li key={index}
-              className={pager.currentPage === page ? "active" : ''}
+              className={classnames({
+                "active": pager.currentPage === page},
+                "page-item"
+              )}
               onClick={() => this.setPage(page)} >
-            <span>{page}</span>
+            <span className="page-link">{page}</span>
           </li>
         )}
         <li onClick={() => this.setPage(pager.currentPage + 1)}
             className={classnames({
                 "disabled": pager.currentPage === pager.totalPages},
-              "nav",
+              "page-item",
             )}>
-
+          <span className="page-link"><span aria-hidden="true">&raquo;</span></span>
         </li>
         <li onClick={() => this.setPage(pager.totalPages)}
             className={classnames({
                 "disabled": pager.currentPage === pager.totalPages},
-              "nav",
-              "navExtreme"
+              "page-item",
             )} >
+          <span className="page-link">Последняя</span>
         </li>
       </ul>
     );
