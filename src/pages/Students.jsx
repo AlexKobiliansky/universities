@@ -1,271 +1,305 @@
 import React, {useState} from 'react';
 import DeleteButton from "../components/DeleteButton";
 import Pagination from "../components/Pagination";
+import Badge from "../components/Badge";
 
 let students = [
   {
-    "_id": "605def59bc0c254f5ac05671",
-    "firstName": "Roberson",
-    "lastName": "Shepherd",
-    "email": "roberson.shepherd@google.com",
-    "phone": "+38 (852) 579-2803",
-    "departmentId": 7
+    "_id": "605e1706703d97364db4c726",
+    "firstName": "Baker",
+    "lastName": "Dunlap",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?10",
+    "email": "baker.dunlap@google.io",
+    "phone": "+38 (900) 491-2260",
+    "departmentId": 8
   },
   {
-    "_id": "605def59d824a9ac5c55f710",
-    "firstName": "Wyatt",
-    "lastName": "Goodwin",
-    "email": "wyatt.goodwin@google.net",
-    "phone": "+38 (874) 451-3830",
-    "departmentId": 5
+    "_id": "605e170682a53fa779e9c63c",
+    "firstName": "Fanny",
+    "lastName": "Leach",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+    "email": "fanny.leach@google.biz",
+    "phone": "+38 (981) 458-2484",
+    "departmentId": 8
   },
   {
-    "_id": "605def59b989051dcd5159a8",
-    "firstName": "Washington",
-    "lastName": "Stuart",
-    "email": "washington.stuart@google.biz",
-    "phone": "+38 (875) 591-3158",
-    "departmentId": 16
+    "_id": "605e1706b038d878f0010e0a",
+    "firstName": "Wade",
+    "lastName": "Cleveland",
+    "avatarUrl": "",
+    "email": "wade.cleveland@google.us",
+    "phone": "+38 (902) 486-2795",
+    "departmentId": 2
   },
   {
-    "_id": "605def59ce5f485791a8088d",
-    "firstName": "Cantrell",
-    "lastName": "Spencer",
-    "email": "cantrell.spencer@google.name",
-    "phone": "+38 (842) 560-3888",
-    "departmentId": 17
-  },
-  {
-    "_id": "605def594274eba18f0b2f1a",
-    "firstName": "Knapp",
-    "lastName": "Rowland",
-    "email": "knapp.rowland@google.tv",
-    "phone": "+38 (956) 523-2941",
-    "departmentId": 11
-  },
-  {
-    "_id": "605def59ae2cae647c129974",
-    "firstName": "Selena",
-    "lastName": "Mendoza",
-    "email": "selena.mendoza@google.biz",
-    "phone": "+38 (976) 590-3530",
-    "departmentId": 3
-  },
-  {
-    "_id": "605def59a48529a4e7f7d382",
-    "firstName": "Cohen",
-    "lastName": "Buck",
-    "email": "cohen.buck@google.info",
-    "phone": "+38 (831) 560-2743",
-    "departmentId": 5
-  },
-  {
-    "_id": "605def59e2d5a8667f8ec3cd",
-    "firstName": "Hahn",
-    "lastName": "Hendrix",
-    "email": "hahn.hendrix@google.org",
-    "phone": "+38 (842) 479-2910",
-    "departmentId": 6
-  },
-  {
-    "_id": "605def593e62f4ba4cb10f9c",
-    "firstName": "Rhodes",
-    "lastName": "Mack",
-    "email": "rhodes.mack@google.ca",
-    "phone": "+38 (844) 536-2617",
-    "departmentId": 13
-  },
-  {
-    "_id": "605def59e9ee616fbf32e8d9",
-    "firstName": "Ingrid",
-    "lastName": "Sanford",
-    "email": "ingrid.sanford@google.io",
-    "phone": "+38 (866) 543-2016",
+    "_id": "605e1706514315cf8a9b98a0",
+    "firstName": "Patti",
+    "lastName": "Jenkins",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+    "email": "patti.jenkins@google.biz",
+    "phone": "+38 (831) 560-3936",
     "departmentId": 10
   },
   {
-    "_id": "605def59c69d89512941a1a2",
-    "firstName": "Amelia",
-    "lastName": "Peterson",
-    "email": "amelia.peterson@google.me",
-    "phone": "+38 (839) 495-2567",
-    "departmentId": 3
-  },
-  {
-    "_id": "605def59f05a0b4a2f418e21",
-    "firstName": "Samantha",
-    "lastName": "Hubbard",
-    "email": "samantha.hubbard@google.us",
-    "phone": "+38 (841) 433-3470",
-    "departmentId": 19
-  },
-  {
-    "_id": "605def5995aa5949e64f4669",
-    "firstName": "Julianne",
-    "lastName": "Medina",
-    "email": "julianne.medina@google.com",
-    "phone": "+38 (926) 523-3893",
+    "_id": "605e17067c29b8bc1a94bb6b",
+    "firstName": "Lidia",
+    "lastName": "Jordan",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+    "email": "lidia.jordan@google.com",
+    "phone": "+38 (986) 557-3999",
     "departmentId": 14
   },
   {
-    "_id": "605def59ff5fe587064d3cc0",
-    "firstName": "Bernadine",
-    "lastName": "Buckley",
-    "email": "bernadine.buckley@google.net",
-    "phone": "+38 (808) 407-2688",
-    "departmentId": 5
-  },
-  {
-    "_id": "605def59d98f66d2c8f5afb7",
-    "firstName": "Craig",
-    "lastName": "Dawson",
-    "email": "craig.dawson@google.biz",
-    "phone": "+38 (871) 470-3241",
-    "departmentId": 18
-  },
-  {
-    "_id": "605def59089a4434a93a8bec",
-    "firstName": "Casey",
-    "lastName": "Logan",
-    "email": "casey.logan@google.name",
-    "phone": "+38 (879) 406-2581",
-    "departmentId": 19
-  },
-  {
-    "_id": "605def59ad3b7001fdbdef4d",
-    "firstName": "Nettie",
-    "lastName": "Hebert",
-    "email": "nettie.hebert@google.tv",
-    "phone": "+38 (859) 526-3906",
+    "_id": "605e1706444603ddac55cad8",
+    "firstName": "Ruth",
+    "lastName": "Gallagher",
+    "avatarUrl": "",
+    "email": "ruth.gallagher@google.tv",
+    "phone": "+38 (976) 437-2276",
     "departmentId": 9
   },
   {
-    "_id": "605def59e9d9ae765972dfdc",
-    "firstName": "Juarez",
-    "lastName": "Gross",
-    "email": "juarez.gross@google.biz",
-    "phone": "+38 (922) 511-3453",
-    "departmentId": 10
+    "_id": "605e170674b624f381b90587",
+    "firstName": "Evangeline",
+    "lastName": "Randall",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?2",
+    "email": "evangeline.randall@google.org",
+    "phone": "+38 (824) 482-3686",
+    "departmentId": 4
   },
   {
-    "_id": "605def5985deef0be6cd1223",
-    "firstName": "Fitzpatrick",
+    "_id": "605e17064826aa0fd359d343",
+    "firstName": "Sheena",
+    "lastName": "Bradley",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?3",
+    "email": "sheena.bradley@google.name",
+    "phone": "+38 (929) 435-3007",
+    "departmentId": 8
+  },
+  {
+    "_id": "605e170650338fc168cc4724",
+    "firstName": "Gallagher",
+    "lastName": "Sargent",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+    "email": "gallagher.sargent@google.net",
+    "phone": "+38 (869) 438-2813",
+    "departmentId": 2
+  },
+  {
+    "_id": "605e17063a5e6f23b44ace7d",
+    "firstName": "Carol",
     "lastName": "Duffy",
-    "email": "fitzpatrick.duffy@google.info",
-    "phone": "+38 (905) 520-3663",
-    "departmentId": 1
+    "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+    "email": "carol.duffy@google.ca",
+    "phone": "+38 (813) 417-3067",
+    "departmentId": 2
   },
   {
-    "_id": "605def59364df2467c71fe41",
-    "firstName": "Oneil",
-    "lastName": "Johns",
-    "email": "oneil.johns@google.org",
-    "phone": "+38 (974) 571-2564",
-    "departmentId": 1
+    "_id": "605e1706556b3f51bf99118c",
+    "firstName": "Sondra",
+    "lastName": "Estes",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+    "email": "sondra.estes@google.info",
+    "phone": "+38 (841) 516-2612",
+    "departmentId": 18
   },
   {
-    "_id": "605def5953b0775d07f42712",
-    "firstName": "Cochran",
-    "lastName": "Santiago",
-    "email": "cochran.santiago@google.ca",
-    "phone": "+38 (835) 425-2083",
-    "departmentId": 10
-  },
-  {
-    "_id": "605def59c40c1db630262a28",
-    "firstName": "Cassie",
-    "lastName": "Snow",
-    "email": "cassie.snow@google.io",
-    "phone": "+38 (946) 559-3004",
-    "departmentId": 16
-  },
-  {
-    "_id": "605def59a73c173257ce15dc",
-    "firstName": "Alexander",
-    "lastName": "Lawson",
-    "email": "alexander.lawson@google.me",
-    "phone": "+38 (939) 401-3250",
-    "departmentId": 15
-  },
-  {
-    "_id": "605def59dd75be9fa566e42e",
-    "firstName": "Effie",
-    "lastName": "Glover",
-    "email": "effie.glover@google.us",
-    "phone": "+38 (850) 466-2255",
-    "departmentId": 16
-  },
-  {
-    "_id": "605def59bd254267f1d667c8",
-    "firstName": "Russo",
-    "lastName": "Manning",
-    "email": "russo.manning@google.com",
-    "phone": "+38 (838) 422-2975",
-    "departmentId": 14
-  },
-  {
-    "_id": "605def591c88491300ac9c18",
-    "firstName": "Janis",
-    "lastName": "Boyd",
-    "email": "janis.boyd@google.net",
-    "phone": "+38 (900) 567-2974",
-    "departmentId": 1
-  },
-  {
-    "_id": "605def59378e59b6d70efb4a",
-    "firstName": "Sofia",
-    "lastName": "Hampton",
-    "email": "sofia.hampton@google.biz",
-    "phone": "+38 (936) 552-2295",
-    "departmentId": 12
-  },
-  {
-    "_id": "605def59d341de7ba6de294d",
-    "firstName": "Meyers",
-    "lastName": "Pittman",
-    "email": "meyers.pittman@google.name",
-    "phone": "+38 (870) 517-3213",
-    "departmentId": 14
-  },
-  {
-    "_id": "605def5941414dc62f31f6a5",
-    "firstName": "Jacobson",
-    "lastName": "Obrien",
-    "email": "jacobson.obrien@google.tv",
-    "phone": "+38 (994) 413-3408",
+    "_id": "605e1706c4683142cb2ef7d1",
+    "firstName": "Justine",
+    "lastName": "Yates",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+    "email": "justine.yates@google.me",
+    "phone": "+38 (839) 600-2254",
     "departmentId": 3
   },
   {
-    "_id": "605def59db3f1677c621704a",
-    "firstName": "Sadie",
-    "lastName": "Sargent",
-    "email": "sadie.sargent@google.biz",
-    "phone": "+38 (915) 566-3346",
+    "_id": "605e1706d1b094da99e45c7e",
+    "firstName": "Johnnie",
+    "lastName": "Silva",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+    "email": "johnnie.silva@google.io",
+    "phone": "+38 (916) 507-3181",
+    "departmentId": 13
+  },
+  {
+    "_id": "605e17069f25521135bf39d0",
+    "firstName": "Mona",
+    "lastName": "Hubbard",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+    "email": "mona.hubbard@google.biz",
+    "phone": "+38 (916) 583-3465",
+    "departmentId": 17
+  },
+  {
+    "_id": "605e1706d2d0153db1e3c5b1",
+    "firstName": "Alfreda",
+    "lastName": "Goodwin",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+    "email": "alfreda.goodwin@google.us",
+    "phone": "+38 (978) 467-2525",
+    "departmentId": 19
+  },
+  {
+    "_id": "605e17062a187db43711a40a",
+    "firstName": "Clayton",
+    "lastName": "Gentry",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+    "email": "clayton.gentry@google.biz",
+    "phone": "+38 (933) 500-3079",
+    "departmentId": 15
+  },
+  {
+    "_id": "605e1706ac802d8db28cc3c9",
+    "firstName": "Barbra",
+    "lastName": "Key",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+    "email": "barbra.key@google.com",
+    "phone": "+38 (955) 443-3104",
+    "departmentId": 19
+  },
+  {
+    "_id": "605e170644ae4e53c2a04c31",
+    "firstName": "Annette",
+    "lastName": "Butler",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?10",
+    "email": "annette.butler@google.tv",
+    "phone": "+38 (907) 455-2523",
+    "departmentId": 16
+  },
+  {
+    "_id": "605e170696430390e9ccdcd0",
+    "firstName": "Nadine",
+    "lastName": "Cochran",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+    "email": "nadine.cochran@google.org",
+    "phone": "+38 (845) 411-2020",
+    "departmentId": 1
+  },
+  {
+    "_id": "605e1706e5346f94cbaed2e0",
+    "firstName": "Kara",
+    "lastName": "Austin",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+    "email": "kara.austin@google.name",
+    "phone": "+38 (820) 511-2229",
+    "departmentId": 13
+  },
+  {
+    "_id": "605e17069e87a0cc8e5a2363",
+    "firstName": "Rowland",
+    "lastName": "Harrell",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?2",
+    "email": "rowland.harrell@google.net",
+    "phone": "+38 (923) 405-3434",
+    "departmentId": 13
+  },
+  {
+    "_id": "605e1706db2cc4bd348abe26",
+    "firstName": "Margarita",
+    "lastName": "Owen",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?7",
+    "email": "margarita.owen@google.ca",
+    "phone": "+38 (921) 524-3160",
+    "departmentId": 19
+  },
+  {
+    "_id": "605e1706ae82fe543353942f",
+    "firstName": "Alexander",
+    "lastName": "Green",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+    "email": "alexander.green@google.info",
+    "phone": "+38 (874) 517-3571",
     "departmentId": 14
   },
   {
-    "_id": "605def59d616af3b49c32831",
-    "firstName": "Gail",
-    "lastName": "Jensen",
-    "email": "gail.jensen@google.info",
-    "phone": "+38 (872) 592-2792",
+    "_id": "605e1706eeee620a00dac819",
+    "firstName": "Guy",
+    "lastName": "Guerra",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?7",
+    "email": "guy.guerra@google.me",
+    "phone": "+38 (959) 524-3244",
+    "departmentId": 16
+  },
+  {
+    "_id": "605e1706997128c5f0908c9a",
+    "firstName": "Vasquez",
+    "lastName": "Holland",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+    "email": "vasquez.holland@google.io",
+    "phone": "+38 (874) 537-2453",
+    "departmentId": 5
+  },
+  {
+    "_id": "605e1706fe522827e2e6d1d0",
+    "firstName": "Lott",
+    "lastName": "Patel",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?5",
+    "email": "lott.patel@google.biz",
+    "phone": "+38 (816) 471-2737",
     "departmentId": 10
   },
   {
-    "_id": "605def594a51514eac30e557",
-    "firstName": "Logan",
-    "lastName": "Lowery",
-    "email": "logan.lowery@google.org",
-    "phone": "+38 (964) 538-2176",
-    "departmentId": 14
+    "_id": "605e170616512beafe035b88",
+    "firstName": "Tyson",
+    "lastName": "Bauer",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+    "email": "tyson.bauer@google.us",
+    "phone": "+38 (920) 518-2008",
+    "departmentId": 6
   },
   {
-    "_id": "605def59353f8dd91e3062be",
-    "firstName": "Adams",
-    "lastName": "Herring",
-    "email": "adams.herring@google.ca",
-    "phone": "+38 (812) 434-2836",
-    "departmentId": 16
+    "_id": "605e1706b823d8d8dcb40536",
+    "firstName": "Rush",
+    "lastName": "Juarez",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+    "email": "rush.juarez@google.biz",
+    "phone": "+38 (967) 464-3598",
+    "departmentId": 9
+  },
+  {
+    "_id": "605e1706cebc868172412c48",
+    "firstName": "Woodward",
+    "lastName": "Campos",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+    "email": "woodward.campos@google.com",
+    "phone": "+38 (971) 449-3391",
+    "departmentId": 3
+  },
+  {
+    "_id": "605e1706e9d63eff28bb2a62",
+    "firstName": "Nicole",
+    "lastName": "Hester",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+    "email": "nicole.hester@google.tv",
+    "phone": "+38 (987) 487-3047",
+    "departmentId": 5
+  },
+  {
+    "_id": "605e170660814c75bb39be76",
+    "firstName": "Erica",
+    "lastName": "Reed",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?2",
+    "email": "erica.reed@google.org",
+    "phone": "+38 (829) 452-3758",
+    "departmentId": 15
+  },
+  {
+    "_id": "605e17060c374523c6cfb93a",
+    "firstName": "Shelby",
+    "lastName": "White",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+    "email": "shelby.white@google.name",
+    "phone": "+38 (868) 476-2353",
+    "departmentId": 15
+  },
+  {
+    "_id": "605e17060f83793d0080a840",
+    "firstName": "Isabel",
+    "lastName": "Huber",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+    "email": "isabel.huber@google.net",
+    "phone": "+38 (812) 446-3260",
+    "departmentId": 10
   }
 ]
 
@@ -300,12 +334,17 @@ function Students() {
 
         {pageOfItems?.map((item, index) => (
           <tr key={item._id}>
-            <td>Фото</td>
-            <td>{item.firstName} {item.lastName}</td>
-            <td>{item.email && <a href={`mailto:${item.email}`}>{item.email}</a>}</td>
-            <td>{item.phone && <a href={`tel:${item.email}`}>{item.phone}</a>}</td>
-            <td>Название факультета</td>
             <td>
+              <Badge
+                label={item.firstName.charAt(0)}
+                img={item.avatarUrl}
+              />
+            </td>
+            <td className="align-middle">{item.firstName} {item.lastName}</td>
+            <td className="align-middle">{item.email && <a href={`mailto:${item.email}`}>{item.email}</a>}</td>
+            <td className="align-middle">{item.phone && <a href={`tel:${item.email}`}>{item.phone}</a>}</td>
+            <td className="align-middle">Название факультета</td>
+            <td className="align-middle">
               <DeleteButton onClick={() => handleClickDelete(item._id)}/>
             </td>
           </tr>
