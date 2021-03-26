@@ -3,18 +3,6 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-const propTypes = {
-  items: PropTypes.array.isRequired,
-  onChangePage: PropTypes.func.isRequired,
-  initialPage: PropTypes.number,
-  pageSize: PropTypes.number
-}
-
-const defaultProps = {
-  initialPage: 1,
-  pageSize: 10
-}
-
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -159,6 +147,16 @@ class Pagination extends React.Component {
   }
 }
 
-Pagination.propTypes = propTypes;
-Pagination.defaultProps = defaultProps;
+Pagination.propTypes = {
+  items: PropTypes.array.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+  initialPage: PropTypes.number,
+  pageSize: PropTypes.number
+};
+
+Pagination.defaultProps = {
+  initialPage: 1,
+  pageSize: 10
+};
+
 export default Pagination;

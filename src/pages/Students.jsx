@@ -332,7 +332,7 @@ function Students() {
         </thead>
         <tbody>
 
-        {pageOfItems?.map((item, index) => (
+        {pageOfItems?.map(item => (
           <tr key={item._id}>
             <td>
               <Badge
