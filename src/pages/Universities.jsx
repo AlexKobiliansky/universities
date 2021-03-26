@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteButton from "../components/DeleteButton";
 
 function Universities() {
 
@@ -24,7 +25,11 @@ function Universities() {
       site: 'http://www.univ.kiev.ua/ru/',
       alias: 'им. Шевченка'
     },
-  ]
+  ];
+
+  let handleClickDelete = (id) => {
+    console.log('delete university: ', id);
+  }
 
   return (
     <>
@@ -42,21 +47,18 @@ function Universities() {
         </thead>
         <tbody>
 
-        {universities?.map((item, index) => {
-          return (
+        {universities?.map((item, index) => (
             <tr key={item.id}>
               <th scope="row">{index+1}</th>
               <td>{item.title}</td>
               <td>{item.city}</td>
               <td><a href={item.site} target="_blank" rel="noreferrer">{item.site}</a></td>
               <td>
-                <button type="button" className="close" aria-label="Закрыть">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <DeleteButton onClick={() => handleClickDelete(item.id)}/>
               </td>
             </tr>
-          )
-        })}
+          ))
+        }
         </tbody>
       </table>
     </>

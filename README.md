@@ -8,6 +8,7 @@ Technologies, used in project:
 * Json-server (in the future it is expected tо use MERN stack instead of using fake server)
 * PropTypes
 * Formik (*optional)
+* Classnames
 
 
 ## TASK
