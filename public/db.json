@@ -1,0 +1,553 @@
+{
+  "universities": [
+    {
+      "id": 1,
+      "title": "Киевский Политехнический Университет",
+      "city": "Киев",
+      "site": "https://kpi.ua/",
+      "alias": "КПИ"
+    },
+    {
+      "id": 2,
+      "title": "Черкасский Национальный Университет им. Богдана Хмельницкого",
+      "city": "Черкассы",
+      "site": "https://cdu.edu.ua/",
+      "alias": "ЧНУ"
+    },
+    {
+      "id": 3,
+      "title": "КНУ имени Тараса Шевченко",
+      "city": "Киев",
+      "site": "http://www.univ.kiev.ua/ru/",
+      "alias": "им. Шевченка"
+    }
+  ],
+  "departments": [
+    {
+      "id": 1,
+      "title": "Инженерно-химический факультет",
+      "universityId": 1
+    },
+    {
+      "id": 2,
+      "title": "Приборостроительный факультет",
+      "universityId": 1
+    },
+    {
+      "id": 3,
+      "title": "Радиотехнический факультет",
+      "universityId": 1
+    },
+    {
+      "id": 4,
+      "title": "Совместный Украинско-немецкий факультет машиностроения",
+      "universityId": 1
+    },
+    {
+      "id": 5,
+      "title": "Теплоэнергетический факультет",
+      "universityId": 1
+    },
+    {
+      "id": 6,
+      "title": "Факультет биомедицинской инженерии",
+      "universityId": 1
+    },
+    {
+      "id": 7,
+      "title": "Факультет биотехнологии и биотехники",
+      "universityId": 1
+    },
+    {
+      "id": 8,
+      "title": "Факультет информатики и вычислительной техники",
+      "universityId": 1
+    },
+    {
+      "id": 9,
+      "title": "УНИ Экономики и права",
+      "universityId": 2
+    },
+    {
+      "id": 10,
+      "title": "УНИ Иностранных языков",
+      "universityId": 2
+    },
+    {
+      "id": 11,
+      "title": "УНИ Международных отношений, истории и философии",
+      "universityId": 2
+    },
+    {
+      "id": 12,
+      "title": "УНИ Педагогического образования, социальной работы и искусства",
+      "universityId": 2
+    },
+    {
+      "id": 13,
+      "title": "УНИ Естественных и аграрных наук",
+      "universityId": 2
+    },
+    {
+      "id": 14,
+      "title": "Географический факультет",
+      "universityId": 3
+    },
+    {
+      "id": 15,
+      "title": "Факультет информационных технологий",
+      "universityId": 3
+    },
+    {
+      "id": 16,
+      "title": "Факультет компьютерных наук и кибернетики",
+      "universityId": 3
+    },
+    {
+      "id": 17,
+      "title": "Факультет радиофизики, электроники и компьютерных систем",
+      "universityId": 3
+    }
+  ],
+  "students": [
+    {
+      "_id": "605e1706703d97364db4c726",
+      "firstName": "Baker",
+      "lastName": "Dunlap",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?10",
+      "email": "baker.dunlap@google.io",
+      "phone": "+38 (900) 491-2260",
+      "departmentId": 8
+    },
+    {
+      "_id": "605e170682a53fa779e9c63c",
+      "firstName": "Fanny",
+      "lastName": "Leach",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+      "email": "fanny.leach@google.biz",
+      "phone": "+38 (981) 458-2484",
+      "departmentId": 8
+    },
+    {
+      "_id": "605e1706b038d878f0010e0a",
+      "firstName": "Wade",
+      "lastName": "Cleveland",
+      "avatarUrl": "",
+      "email": "wade.cleveland@google.us",
+      "phone": "+38 (902) 486-2795",
+      "departmentId": 2
+    },
+    {
+      "_id": "605e1706514315cf8a9b98a0",
+      "firstName": "Patti",
+      "lastName": "Jenkins",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "email": "patti.jenkins@google.biz",
+      "phone": "+38 (831) 560-3936",
+      "departmentId": 10
+    },
+    {
+      "_id": "605e17067c29b8bc1a94bb6b",
+      "firstName": "Lidia",
+      "lastName": "Jordan",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+      "email": "lidia.jordan@google.com",
+      "phone": "+38 (986) 557-3999",
+      "departmentId": 14
+    },
+    {
+      "_id": "605e1706444603ddac55cad8",
+      "firstName": "Ruth",
+      "lastName": "Gallagher",
+      "avatarUrl": "",
+      "email": "ruth.gallagher@google.tv",
+      "phone": "+38 (976) 437-2276",
+      "departmentId": 9
+    },
+    {
+      "_id": "605e170674b624f381b90587",
+      "firstName": "Evangeline",
+      "lastName": "Randall",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?2",
+      "email": "evangeline.randall@google.org",
+      "phone": "+38 (824) 482-3686",
+      "departmentId": 4
+    },
+    {
+      "_id": "605e17064826aa0fd359d343",
+      "firstName": "Sheena",
+      "lastName": "Bradley",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?3",
+      "email": "sheena.bradley@google.name",
+      "phone": "+38 (929) 435-3007",
+      "departmentId": 8
+    },
+    {
+      "_id": "605e170650338fc168cc4724",
+      "firstName": "Gallagher",
+      "lastName": "Sargent",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "email": "gallagher.sargent@google.net",
+      "phone": "+38 (869) 438-2813",
+      "departmentId": 2
+    },
+    {
+      "_id": "605e17063a5e6f23b44ace7d",
+      "firstName": "Carol",
+      "lastName": "Duffy",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "email": "carol.duffy@google.ca",
+      "phone": "+38 (813) 417-3067",
+      "departmentId": 2
+    },
+    {
+      "_id": "605e1706556b3f51bf99118c",
+      "firstName": "Sondra",
+      "lastName": "Estes",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+      "email": "sondra.estes@google.info",
+      "phone": "+38 (841) 516-2612",
+      "departmentId": 18
+    },
+    {
+      "_id": "605e1706c4683142cb2ef7d1",
+      "firstName": "Justine",
+      "lastName": "Yates",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+      "email": "justine.yates@google.me",
+      "phone": "+38 (839) 600-2254",
+      "departmentId": 3
+    },
+    {
+      "_id": "605e1706d1b094da99e45c7e",
+      "firstName": "Johnnie",
+      "lastName": "Silva",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+      "email": "johnnie.silva@google.io",
+      "phone": "+38 (916) 507-3181",
+      "departmentId": 13
+    },
+    {
+      "_id": "605e17069f25521135bf39d0",
+      "firstName": "Mona",
+      "lastName": "Hubbard",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "email": "mona.hubbard@google.biz",
+      "phone": "+38 (916) 583-3465",
+      "departmentId": 17
+    },
+    {
+      "_id": "605e1706d2d0153db1e3c5b1",
+      "firstName": "Alfreda",
+      "lastName": "Goodwin",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+      "email": "alfreda.goodwin@google.us",
+      "phone": "+38 (978) 467-2525",
+      "departmentId": 19
+    },
+    {
+      "_id": "605e17062a187db43711a40a",
+      "firstName": "Clayton",
+      "lastName": "Gentry",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+      "email": "clayton.gentry@google.biz",
+      "phone": "+38 (933) 500-3079",
+      "departmentId": 15
+    },
+    {
+      "_id": "605e1706ac802d8db28cc3c9",
+      "firstName": "Barbra",
+      "lastName": "Key",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "email": "barbra.key@google.com",
+      "phone": "+38 (955) 443-3104",
+      "departmentId": 19
+    },
+    {
+      "_id": "605e170644ae4e53c2a04c31",
+      "firstName": "Annette",
+      "lastName": "Butler",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?10",
+      "email": "annette.butler@google.tv",
+      "phone": "+38 (907) 455-2523",
+      "departmentId": 16
+    },
+    {
+      "_id": "605e170696430390e9ccdcd0",
+      "firstName": "Nadine",
+      "lastName": "Cochran",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "email": "nadine.cochran@google.org",
+      "phone": "+38 (845) 411-2020",
+      "departmentId": 1
+    },
+    {
+      "_id": "605e1706e5346f94cbaed2e0",
+      "firstName": "Kara",
+      "lastName": "Austin",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+      "email": "kara.austin@google.name",
+      "phone": "+38 (820) 511-2229",
+      "departmentId": 13
+    },
+    {
+      "_id": "605e17069e87a0cc8e5a2363",
+      "firstName": "Rowland",
+      "lastName": "Harrell",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?2",
+      "email": "rowland.harrell@google.net",
+      "phone": "+38 (923) 405-3434",
+      "departmentId": 13
+    },
+    {
+      "_id": "605e1706db2cc4bd348abe26",
+      "firstName": "Margarita",
+      "lastName": "Owen",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?7",
+      "email": "margarita.owen@google.ca",
+      "phone": "+38 (921) 524-3160",
+      "departmentId": 19
+    },
+    {
+      "_id": "605e1706ae82fe543353942f",
+      "firstName": "Alexander",
+      "lastName": "Green",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "email": "alexander.green@google.info",
+      "phone": "+38 (874) 517-3571",
+      "departmentId": 14
+    },
+    {
+      "_id": "605e1706eeee620a00dac819",
+      "firstName": "Guy",
+      "lastName": "Guerra",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?7",
+      "email": "guy.guerra@google.me",
+      "phone": "+38 (959) 524-3244",
+      "departmentId": 16
+    },
+    {
+      "_id": "605e1706997128c5f0908c9a",
+      "firstName": "Vasquez",
+      "lastName": "Holland",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+      "email": "vasquez.holland@google.io",
+      "phone": "+38 (874) 537-2453",
+      "departmentId": 5
+    },
+    {
+      "_id": "605e1706fe522827e2e6d1d0",
+      "firstName": "Lott",
+      "lastName": "Patel",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?5",
+      "email": "lott.patel@google.biz",
+      "phone": "+38 (816) 471-2737",
+      "departmentId": 10
+    },
+    {
+      "_id": "605e170616512beafe035b88",
+      "firstName": "Tyson",
+      "lastName": "Bauer",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "email": "tyson.bauer@google.us",
+      "phone": "+38 (920) 518-2008",
+      "departmentId": 6
+    },
+    {
+      "_id": "605e1706b823d8d8dcb40536",
+      "firstName": "Rush",
+      "lastName": "Juarez",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+      "email": "rush.juarez@google.biz",
+      "phone": "+38 (967) 464-3598",
+      "departmentId": 9
+    },
+    {
+      "_id": "605e1706cebc868172412c48",
+      "firstName": "Woodward",
+      "lastName": "Campos",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "email": "woodward.campos@google.com",
+      "phone": "+38 (971) 449-3391",
+      "departmentId": 3
+    },
+    {
+      "_id": "605e1706e9d63eff28bb2a62",
+      "firstName": "Nicole",
+      "lastName": "Hester",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "email": "nicole.hester@google.tv",
+      "phone": "+38 (987) 487-3047",
+      "departmentId": 5
+    },
+    {
+      "_id": "605e170660814c75bb39be76",
+      "firstName": "Erica",
+      "lastName": "Reed",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?2",
+      "email": "erica.reed@google.org",
+      "phone": "+38 (829) 452-3758",
+      "departmentId": 15
+    },
+    {
+      "_id": "605e17060c374523c6cfb93a",
+      "firstName": "Shelby",
+      "lastName": "White",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "email": "shelby.white@google.name",
+      "phone": "+38 (868) 476-2353",
+      "departmentId": 15
+    },
+    {
+      "_id": "605e17060f83793d0080a840",
+      "firstName": "Isabel",
+      "lastName": "Huber",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+      "email": "isabel.huber@google.net",
+      "phone": "+38 (812) 446-3260",
+      "departmentId": 10
+    }
+  ],
+  "teachers": [
+    {
+      "_id": "605e1a337867b020b759fc28",
+      "firstName": "Murray",
+      "lastName": "Bryan",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+      "departmentId": 15
+    },
+    {
+      "_id": "605e1a336f9b8d435813bcea",
+      "firstName": "Rowe",
+      "lastName": "Arnold",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "departmentId": 16
+    },
+    {
+      "_id": "605e1a33e8afcd80c44dc12d",
+      "firstName": "Riddle",
+      "lastName": "Wooten",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?10",
+      "departmentId": 14
+    },
+    {
+      "_id": "605e1a3374c15a0f7b9f241b",
+      "firstName": "Tran",
+      "lastName": "Briggs",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "departmentId": 2
+    },
+    {
+      "_id": "605e1a33ed2297e6c1833747",
+      "firstName": "Hendrix",
+      "lastName": "Santos",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+      "departmentId": 8
+    },
+    {
+      "_id": "605e1a337cad67f5e26ad323",
+      "firstName": "Gates",
+      "lastName": "Workman",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "departmentId": 17
+    },
+    {
+      "_id": "605e1a332d0820b84f16e250",
+      "firstName": "Rae",
+      "lastName": "Mclaughlin",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "departmentId": 2
+    },
+    {
+      "_id": "605e1a333665dace5cb1b8a3",
+      "firstName": "Autumn",
+      "lastName": "Paul",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "departmentId": 2
+    },
+    {
+      "_id": "605e1a3370c4f9d1a34b4326",
+      "firstName": "Tamara",
+      "lastName": "Gray",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "departmentId": 17
+    },
+    {
+      "_id": "605e1a3333304aa99185570a",
+      "firstName": "Wilkins",
+      "lastName": "Orr",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+      "departmentId": 5
+    },
+    {
+      "_id": "605e1a338ebae118b5f90ed1",
+      "firstName": "Mamie",
+      "lastName": "Bell",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+      "departmentId": 16
+    },
+    {
+      "_id": "605e1a331709f509cbc5ad03",
+      "firstName": "Josephine",
+      "lastName": "Le",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?6",
+      "departmentId": 9
+    },
+    {
+      "_id": "605e1a33e98c95c564eb7cf0",
+      "firstName": "Mcintyre",
+      "lastName": "Mccray",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?2",
+      "departmentId": 9
+    },
+    {
+      "_id": "605e1a33e451ff002978d0e6",
+      "firstName": "Ruth",
+      "lastName": "Dunlap",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?2",
+      "departmentId": 8
+    },
+    {
+      "_id": "605e1a330dcd06ed2a61b6e7",
+      "firstName": "Barber",
+      "lastName": "Kramer",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?8",
+      "departmentId": 17
+    },
+    {
+      "_id": "605e1a3357db9058fd73170e",
+      "firstName": "Celeste",
+      "lastName": "Compton",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?4",
+      "departmentId": 8
+    },
+    {
+      "_id": "605e1a337f45a9a49a73b6e4",
+      "firstName": "Sexton",
+      "lastName": "Strong",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?1",
+      "departmentId": 6
+    },
+    {
+      "_id": "605e1a3330a36418f4154c6e",
+      "firstName": "Rocha",
+      "lastName": "Floyd",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?9",
+      "departmentId": 17
+    },
+    {
+      "_id": "605e1a33d4fef48d8e9e9407",
+      "firstName": "Rutledge",
+      "lastName": "Warner",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?10",
+      "departmentId": 12
+    },
+    {
+      "_id": "605e1a33c1dad60fae4b19ee",
+      "firstName": "Rosalie",
+      "lastName": "Perkins",
+      "avatarUrl": "https://source.unsplash.com/random/100x100?3",
+      "departmentId": 5
+    }
+  ]
+}

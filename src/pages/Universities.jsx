@@ -1,31 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import DeleteButton from "../components/DeleteButton";
+import axios from "axios";
 
 function Universities() {
+  let [universities, setUniversities] = useState(null);
 
-  let universities = [
-    {
-      id: 1,
-      title: 'Киевский Политехнический Университет',
-      city: 'Киев',
-      site: 'https://kpi.ua/',
-      alias: 'КПИ'
-    },
-    {
-      id: 2,
-      title: 'Черкасский Национальный Университет им. Богдана Хмельницкого',
-      city: 'Черкассы',
-      site: 'https://cdu.edu.ua/',
-      alias: 'ЧНУ'
-    },
-    {
-      id: 3,
-      title: 'КНУ имени Тараса Шевченко',
-      city: 'Киев',
-      site: 'http://www.univ.kiev.ua/ru/',
-      alias: 'им. Шевченка'
-    },
-  ];
+  useEffect(() => {
+    axios.get('http://localhost:3001/universities').then(({data}) => {
+      setUniversities(data)
+    });
+  }, []);
 
   let handleClickDelete = (id) => {
     console.log('delete university: ', id);
