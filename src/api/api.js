@@ -21,5 +21,9 @@ export const departmentsAPI = {
 export const univerAPI = {
   getUniver(id) {
     return instance.get(`universities/${id}?embed=departments`)
+  },
+
+  editUniver(id, object) {
+    return instance.patch(`http://localhost:3001/universities/${id}`, object)
   }
 }

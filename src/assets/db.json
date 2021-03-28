@@ -2,7 +2,7 @@
   "universities": [
     {
       "id": 1,
-      "title": "Киевский Политехнический Институт",
+      "title": "Киевский Политехнический Институтsss",
       "city": "Киев",
       "site": "https://kpi.ua/",
       "alias": "КПИ",
@@ -14,7 +14,7 @@
       "city": "Черкассы",
       "site": "https://cdu.edu.ua/",
       "alias": "ЧНУ",
-      "logoUrl":  "https://cdu.edu.ua/images/oformlennia/portret/sumvol/logo_chnu_2016_1.jpg"
+      "logoUrl": "https://cdu.edu.ua/images/oformlennia/portret/sumvol/logo_chnu_2016_1.jpg"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "city": "Киев",
       "site": "http://www.univ.kiev.ua/ru/",
       "alias": "им. Шевченка",
-      "logoUrl":  "https://www.psyh.kiev.ua/images/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_%D0%9A%D0%9D%D0%A3_%D1%96%D0%BC%D0%B5%D0%BD%D1%96_%D0%A2%D0%B0%D1%80%D0%B0%D1%81%D0%B0_%D0%A8%D0%B5%D0%B2%D1%87%D0%B5%D0%BD%D0%BA%D0%B0.jpg"
+      "logoUrl": "https://www.psyh.kiev.ua/images/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_%D0%9A%D0%9D%D0%A3_%D1%96%D0%BC%D0%B5%D0%BD%D1%96_%D0%A2%D0%B0%D1%80%D0%B0%D1%81%D0%B0_%D0%A8%D0%B5%D0%B2%D1%87%D0%B5%D0%BD%D0%BA%D0%B0.jpg"
     }
   ],
   "departments": [

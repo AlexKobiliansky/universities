@@ -23,6 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea/
-public/db-example.json
-public/db-backup.json
+/src/assets/db-example.json
+#/src/assets/db-backup.json
+
+/src/assets/db-backup.json
+/src/assets/db-example.json
+
 
