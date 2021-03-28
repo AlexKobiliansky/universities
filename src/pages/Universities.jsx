@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 import UniversitiesList from "../components/UniversitiesList";
+import { universitiesAPI } from '../api/api'
 
 function Universities() {
   let [universities, setUniversities] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/universities').then(({data}) => {
+    universitiesAPI.getUniversities().then(({data}) => {
       setUniversities(data)
     });
   }, []);

@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 import DepartmentsList from "../components/DepartmentsList";
+import {departmentsAPI} from "../api/api";
 
 function Departments() {
 
   let [departments, setDepartments] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/departments?expand=university').then(({data}) => {
+    departmentsAPI.getDepartments().then(({data}) => {
       setDepartments(data)
     });
   }, []);

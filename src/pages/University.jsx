@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import axios from "axios";
 import InfoLabel from "../components/InfoLabel/InfoLabel";
 import DepartmentsList from "../components/DepartmentsList";
+import {univerAPI} from "../api/api";
 
 function University() {
   const [univer, setUniver] = useState(null);
   const univerId = useParams().id;
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/universities/${univerId}?embed=departments`).then(({data}) => {
+    univerAPI.getUniver(univerId).then(({data}) => {
       setUniver(data);
     }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
