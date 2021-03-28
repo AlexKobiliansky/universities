@@ -4,8 +4,10 @@ import Universities from "./pages/Universities";
 import Departments from "./pages/Departments";
 import Students from "./pages/Students";
 import Teachers from "./pages/Teachers";
+import University from "./pages/University";
 
 import { Switch, Route } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
             <Route path="/departments" component={Departments} />
             <Route path="/students" component={Students} />
             <Route path="/teachers" component={Teachers} />
+            <Route path="/university/:id" component={University} />
           </Switch>
         </div>
       </div>

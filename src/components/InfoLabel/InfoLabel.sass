@@ -1,0 +1,34 @@
+.info-label
+  display: flex
+  font-size: 18px
+  border-bottom: 1px solid #eee
+  background-color: lighten(lightblue, 10%)
+  &>div
+    padding-top: 12px
+    padding-bottom: 12px
+  &-title
+    width: 30%
+    font-weight: 700
+    position: relative
+    border-right: 1px solid #eee
+    padding-left: 16px
+    padding-right: 16px
+  &-value
+    width: 70%
+    padding-left: 16px
+    padding-right: 100px
+    position: relative
+  &:nth-child(even)
+    background-color: lighten(lightblue, 5%)
+  &-change
+    position: absolute
+    right: 5px
+    top: 5px
+    color: green
+    opacity: .5
+    transition: all .3s ease
+    cursor: pointer
+    &:hover
+      opacity: 1
+
+

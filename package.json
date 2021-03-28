@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
-    "json-server": "^0.16.3",
+    "json-server-relationship": "^0.14.5",
     "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "json-server": "json-server --watch public/db.json --port 3001"
+    "json-server": "json-server-relationship --watch public/db.json --port 3001"
   },
   "eslintConfig": {
     "extends": [
