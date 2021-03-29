@@ -25,5 +25,9 @@ export const univerAPI = {
 
   editUniver(id, object) {
     return instance.patch(`http://localhost:3001/universities/${id}`, object)
+  },
+
+  deleteUniver(id) {
+    return instance.delete(`http://localhost:3001/universities/${id}`)
   }
 }

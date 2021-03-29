@@ -5,14 +5,17 @@ import DepartmentsList from "../components/DepartmentsList";
 import {univerAPI} from "../api/api";
 
 import {useParams} from 'react-router-dom';
+import Spinner from "../components/Spinner";
 
 function University() {
+  const [loading, setLoading] = useState(true);
   const [univer, setUniver] = useState(null);
   const univerId = useParams().id;
 
   useEffect(() => {
     univerAPI.getUniver(univerId).then(({data}) => {
       setUniver(data);
+      setLoading(false)
     }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -34,8 +37,8 @@ function University() {
 
   return (
     <>
-      {!univer
-        ? 'Загрузка'
+      {loading
+        ? <Spinner />
         : <div>
           <h1>{univer.title}</h1>
           <div className="row mb">
