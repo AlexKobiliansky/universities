@@ -61,7 +61,7 @@ function UniversitiesList({items, loading}) {
               </td>
 
               <td className="align-middle">
-                <Link to={`university/${item.id}`}>{item.title}</Link>
+                <Link to={`/university/${item.id}`}>{item.title}</Link>
               </td>
 
               <td className="align-middle">{item.city}</td>

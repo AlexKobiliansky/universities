@@ -18,6 +18,11 @@
     padding-left: 16px
     padding-right: 34px
     position: relative
+    .error-message
+      padding-left: 12px
+      color: red
+      font-size: 12px
+      padding-top: 4px
   &:nth-child(even)
     background-color: lighten(lightblue, 5%)
   &-change
@@ -35,3 +40,13 @@
     border: none
     background: transparent
     width: 100%
+  &-add
+    input
+      background-color: rgba(#fff, .4)
+      padding-left: 12px
+      padding-right: 12px
+  &.has-error
+    input, textarea
+      color: red
+
+
