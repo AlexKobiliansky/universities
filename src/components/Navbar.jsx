@@ -21,10 +21,14 @@ function Navbar() {
               <NavLink to="/teachers" exact className="nav-link" activeClassName="active">Преподаватели</NavLink>
             </li>
         </ul>
-        <div className="form-inline my-2 my-lg-0">
-          <input className="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" />
-          <button className="btn btn-info my-2 my-sm-0" type="submit">Поиск</button>
-        </div>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <NavLink to="/login" exact className="nav-link" activeClassName="active">Логин</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/registration" exact className="nav-link" activeClassName="active">Регистрация</NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );

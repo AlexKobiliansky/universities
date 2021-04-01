@@ -5,9 +5,11 @@ import Departments from "./pages/Departments";
 import Students from "./pages/Students";
 import Teachers from "./pages/Teachers";
 import University from "./pages/University";
+import AddUniversity from "./pages/AddUniversity";
+import Registration from "./pages/Registration";
 
 import { Switch, Route } from 'react-router-dom';
-import AddUniversity from "./pages/AddUniversity";
+
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
             <Route path="/teachers" component={Teachers} />
             <Route path="/university/:id" component={University} exact/>
             <Route path="/add/university" component={AddUniversity} exact/>
+            <Route path="/registration" component={Registration} exact/>
           </Switch>
         </div>
       </div>

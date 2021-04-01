@@ -2,7 +2,6 @@ import React from 'react';
 import AddInfoLabel from "../components/InfoLabel/AddInfoLabel";
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import axios from "axios";
 import {univerAPI} from "../api/api";
 
 function AddUniversity() {
@@ -128,28 +127,9 @@ function AddUniversity() {
                 </div>
               </div>
             </div>
-
           </form>
-
-
         )}
-
-
-
-
-
-
-
       </Formik>
-
-
-
-
-
-
-
-
-
     </div>
   );
 }
