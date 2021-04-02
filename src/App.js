@@ -7,8 +7,10 @@ import Teachers from "./pages/Teachers";
 import University from "./pages/University";
 import AddUniversity from "./pages/AddUniversity";
 import Registration from "./pages/Registration";
+import Login from "./pages/Login";
 
 import { Switch, Route } from 'react-router-dom';
+
 
 
 
@@ -26,6 +28,7 @@ function App() {
             <Route path="/university/:id" component={University} exact/>
             <Route path="/add/university" component={AddUniversity} exact/>
             <Route path="/registration" component={Registration} exact/>
+            <Route path="/login" component={Login} exact/>
           </Switch>
         </div>
       </div>
