@@ -22,17 +22,17 @@ function LoginForm() {
       .trim('Не должно быть пробелов в начале и конце строки')
       .strict()
       .typeError('Должно быть строкой')
-      .required('Это поле не должно быть пустым'),
-      // .min(8, 'Длина пароля должна быть не менее 8-и символов'),
-    // .matches(
-    //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-    //   "Пароль должен содержать по крайней мере один заглавный символ, обычный символ, цифру и спец-символ"
-    // ),
+      .required('Это поле не должно быть пустым')
+      // .min(8, 'Длина пароля должна быть не менее 8-и символов')
+      // .matches(
+      //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      //   "Пароль должен содержать по крайней мере один заглавный символ, обычный символ, цифру и спец-символ"
+      // ),
   });
 
   let submitForm = async (values) => {
     const user = await dispatch(login(values.login, values.password));
-    
+
     if (user) {
       history.push('/');
     }
@@ -100,7 +100,7 @@ function LoginForm() {
             </label>
           </div>
 
-          <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Зарегистрироваться</button>
+          <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Войти</button>
         </form>
       )}
     </Formik>

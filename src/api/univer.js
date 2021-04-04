@@ -1,22 +1,4 @@
-import * as axios from "axios";
-
-const baseUrl = 'http://localhost:3001/'
-
-const instance = axios.create({
-  baseURL: baseUrl,
-});
-
-export const universitiesAPI = {
-  getUniversities() {
-    return instance.get(`universities/`);
-  }
-}
-
-export const departmentsAPI = {
-  getDepartments() {
-    return instance.get(`departments/?expand=university`);
-  }
-}
+import {instance} from "./index";
 
 export const univerAPI = {
   getUniver(id) {

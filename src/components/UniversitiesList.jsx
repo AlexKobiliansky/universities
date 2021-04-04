@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import DeleteButton from "./DeleteButton";
 import PropTypes from "prop-types";
 import Spinner from "./Spinner";
-import {univerAPI} from "../api/api";
+import {univerAPI} from "../api/univer";
 import Popup from "./Popup";
 
 function UniversitiesList({items, loading}) {

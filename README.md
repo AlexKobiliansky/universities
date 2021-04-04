@@ -7,8 +7,10 @@ Technologies, used in project:
 * Axios
 * Json-server (in the future it is expected tо use MERN stack instead of using fake server)
 * PropTypes
-* Formik (*optional)
+* Formik + yup
 * Classnames
+* redux (react-redux)
+* redux-thunk
 
 
 ## TASK

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import DepartmentsList from "../components/DepartmentsList";
-import {departmentsAPI} from "../api/api";
+import {departmentsAPI} from "../api/departments";
 
 function Departments() {
 

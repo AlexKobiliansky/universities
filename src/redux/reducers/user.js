@@ -1,5 +1,4 @@
-const SET_USER = "SET_USER";
-const LOGOUT = "LOGOUT";
+import {SET_USER, LOGOUT} from "../types";
 
 const defaultState = {
   currentUser: {},

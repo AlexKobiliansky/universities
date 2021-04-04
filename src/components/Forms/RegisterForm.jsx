@@ -4,8 +4,8 @@ import './forms.sass';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import classnames from "classnames";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
+import {userAPI} from "../../api/user";
 
 function RegisterForm() {
   let history = useHistory();
@@ -21,8 +21,8 @@ function RegisterForm() {
       .trim('Не должно быть пробелов в начале и конце строки')
       .strict()
       .typeError('Должно быть строкой')
-      .required('Это поле не должно быть пустым')
-      .min(8, 'Длина пароля должна быть не менее 8-и символов'),
+      .required('Это поле не должно быть пустым'),
+      // .min(8, 'Длина пароля должна быть не менее 8-и символов'),
       // .matches(
       //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       //   "Пароль должен содержать по крайней мере один заглавный символ, обычный символ, цифру и спец-символ"
@@ -36,11 +36,9 @@ function RegisterForm() {
   });
 
   let submitForm = async (values) => {
-    const candidate = await axios.get(`http://localhost:3001/users?login=${values.login}`)
+    const candidate = await userAPI.getUser(values.login)
       .then(({data}) => data[0])
-      .catch(() => {
-        alert('Проблемы при регистрации');
-      });
+      .catch(() => alert('Проблемы при регистрации'));
 
     if (candidate && candidate.login === values.login) {
       alert(`Пользователь с логином ${values.login} уже существует!`);
@@ -52,7 +50,7 @@ function RegisterForm() {
         priority: 2
       }
       try {
-        await axios.post(`http://localhost:3001/users`, newUser)
+        await userAPI.addUser(newUser)
       } catch (e) {
         alert(e.message)
       }

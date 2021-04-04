@@ -2,7 +2,7 @@ import React from 'react';
 import AddInfoLabel from "../components/InfoLabel/AddInfoLabel";
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import {univerAPI} from "../api/api";
+import {univerAPI} from "../api/univer";
 
 function AddUniversity() {
 
