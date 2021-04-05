@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import UniversitiesList from "../components/UniversitiesList";
 import { universitiesAPI } from '../api/universities'
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 function Universities() {
@@ -18,6 +18,11 @@ function Universities() {
 
   return (
     <>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item active" aria-current="page">Университеты</li>
+        </ol>
+      </nav>
       <h1>Университеты</h1>
 
       {<UniversitiesList items={universities} loading={loading} />}

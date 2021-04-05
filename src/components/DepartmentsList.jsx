@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from "prop-types";
 import UniversitiesList from "./UniversitiesList";
 import DeleteButton from "./DeleteButton";
+import {useSelector} from "react-redux";
 
 function DepartmentsList({items, univer}) {
+  const {currentUser} = useSelector(({user}) => user);
+
   let handleClickDelete = (id) => {
     console.log('delete department: ', id);
   }
@@ -26,7 +29,9 @@ function DepartmentsList({items, univer}) {
           <td>{item.title}</td>
           <td>{univer ? univer : item.university?.alias}</td>
           <td>
-            <DeleteButton onClick={() => handleClickDelete(item.id)}/>
+            {currentUser && currentUser.priority < 2 &&
+              <DeleteButton onClick={() => handleClickDelete(item.id)}/>
+            }
           </td>
         </tr>
       ))

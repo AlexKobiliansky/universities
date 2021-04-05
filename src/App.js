@@ -9,7 +9,7 @@ import AddUniversity from "./pages/AddUniversity";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {setUser} from "./redux/reducers/user";
 
@@ -32,9 +32,24 @@ function App() {
             <Route path="/students" component={Students} />
             <Route path="/teachers" component={Teachers} />
             <Route path="/university/:id" component={University} exact/>
-            <Route path="/add/university" component={AddUniversity} exact/>
-            <Route path="/registration" component={Registration} exact/>
-            <Route path="/login" component={Login} exact/>
+
+            {!userData
+              ? <Switch>
+                <Route path='/registration' component={Registration}/>
+                <Route path='/login' component={Login}/>
+                <Redirect to='/'/>
+              </Switch>
+              : <Redirect to='/'/>
+            }
+
+            {userData && userData.priority < 2
+              ? <Switch>
+                <Route path="/add/university" component={AddUniversity} />
+                <Redirect to='/'/>
+              </Switch>
+              : <Redirect to='/'/>
+            }
+            <Redirect to='/'/>
           </Switch>
         </div>
       </div>

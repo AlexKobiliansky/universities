@@ -6,11 +6,13 @@ import PropTypes from "prop-types";
 import Spinner from "./Spinner";
 import {univerAPI} from "../api/univer";
 import Popup from "./Popup";
+import {useSelector} from "react-redux";
 
 function UniversitiesList({items, loading}) {
   const [universities, setUniversities] = useState(items);
   const [isOpenedPopup, setIsOpenedPopup] = useState(false);
   const [selectedItem, setSelecetedItem] = useState(null);
+  const {currentUser} = useSelector(({user}) => user);
 
   useEffect(() => {
     setUniversities(items);
@@ -71,7 +73,9 @@ function UniversitiesList({items, loading}) {
               </td>
 
               <td className="align-middle">
+                {currentUser && currentUser.priority < 2 &&
                 <DeleteButton onClick={() => openPopup(item)}/>
+                }
               </td>
             </tr>
           ))

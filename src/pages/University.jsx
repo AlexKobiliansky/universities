@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import InfoLabel from "../components/InfoLabel/InfoLabel";
 import DepartmentsList from "../components/DepartmentsList";
-
 import {univerAPI} from "../api/univer";
-
-import {useParams} from 'react-router-dom';
+import {NavLink, useParams} from 'react-router-dom';
 import Spinner from "../components/Spinner";
 
 function University() {
@@ -40,6 +38,14 @@ function University() {
       {loading
         ? <Spinner />
         : <div>
+
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><NavLink to="/">Университеты</NavLink></li>
+              <li className="breadcrumb-item active" aria-current="page">{univer.title}</li>
+            </ol>
+          </nav>
+
           <h1>{univer.title}</h1>
           <div className="row mb">
             <div className="col-md-4 col-lg-3">
