@@ -32,10 +32,7 @@ function LoginForm() {
 
   let submitForm = async (values) => {
     const user = await dispatch(login(values.login, values.password));
-
-    if (user) {
-      history.push('/');
-    }
+    user && history.push('/');
   }
 
 

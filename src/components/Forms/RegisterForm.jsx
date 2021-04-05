@@ -5,10 +5,13 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import classnames from "classnames";
 import { useHistory } from "react-router-dom";
-import {userAPI} from "../../api/user";
+import {useDispatch} from 'react-redux';
+import {login, register} from "../../redux/actions/user";
 
 function RegisterForm() {
   let history = useHistory();
+  const dispatch = useDispatch();
+
   const validationSchema = yup.object().shape({
     login: yup.string()
       .trim('Не должно быть пробелов в начале и конце строки')
@@ -36,28 +39,13 @@ function RegisterForm() {
   });
 
   let submitForm = async (values) => {
-    const candidate = await userAPI.getUser(values.login)
-      .then(({data}) => data[0])
-      .catch(() => alert('Проблемы при регистрации'));
+    const registerSuccess = await register(values.login, values.password);
 
-    if (candidate && candidate.login === values.login) {
-      alert(`Пользователь с логином ${values.login} уже существует!`);
-    } else {
-      const newUser = {
-        login: values.login,
-        password: values.password,
-        role: "Подписчик",
-        priority: 2
-      }
-      try {
-        await userAPI.addUser(newUser)
-      } catch (e) {
-        alert(e.message)
-      }
-
-      alert('Регистрация успешна!');
-      history.push('/');
+    if(registerSuccess) {
+      const user = await dispatch(login(values.login, values.password));
+      user && history.push('/');
     }
+
   }
 
   return (

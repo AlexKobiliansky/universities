@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Navbar from "./components/Navbar";
 import Universities from "./pages/Universities";
 import Departments from "./pages/Departments";
@@ -10,11 +10,17 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 
 import { Switch, Route } from 'react-router-dom';
-
-
-
+import {useDispatch} from 'react-redux';
+import {setUser} from "./redux/reducers/user";
 
 function App() {
+  const dispatch = useDispatch();
+  const [userData] = useState(JSON.parse(localStorage.getItem("userData")));
+
+  useEffect(() => {
+    userData && dispatch(setUser(userData));
+  }, [])
+
   return (
     <div className="App">
       <Navbar />
