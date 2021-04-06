@@ -1,0 +1,25 @@
+.img-label
+  height: 255px
+  background-color: rgb(227, 242, 253)
+  position: relative
+  img
+    width: 100%
+    height: 100%
+    object-fit: contain
+  &-buttons
+    position: absolute
+    z-index: 2
+    right: 5px
+    top: 5px
+    input
+      display: none
+  &-btn
+    display: inline-block
+    color: green
+    opacity: .5
+    transition: all .3s ease
+    cursor: pointer
+    &:hover
+      opacity: 1
+  &-delete
+    margin-left: 5px

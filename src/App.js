@@ -18,7 +18,7 @@ function App() {
   const [userData] = useState(JSON.parse(localStorage.getItem("userData")));
 
   useEffect(() => {
-    userData && dispatch(setUser(userData));
+    userData && dispatch(setUser(userData)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

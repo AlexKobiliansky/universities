@@ -148,7 +148,7 @@ let data = [
 
 function Teachers() {
   let [pageOfItems, setPageOfItems] = useState([]);
-  let [teachers, setTeachers] = useState(data);
+  let [teachers] = useState(data);
 
 
   let handleClickDelete = (id) => {

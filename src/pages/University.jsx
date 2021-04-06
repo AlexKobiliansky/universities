@@ -4,16 +4,18 @@ import DepartmentsList from "../components/DepartmentsList";
 import {univerAPI} from "../api/univer";
 import {NavLink, useParams} from 'react-router-dom';
 import Spinner from "../components/Spinner";
+import ImgLabel from "../components/ImgLabel/ImgLabel";
 
 function University() {
   const [loading, setLoading] = useState(true);
   const [univer, setUniver] = useState(null);
+
   const univerId = useParams().id;
 
   useEffect(() => {
     univerAPI.getUniver(univerId).then(({data}) => {
       setUniver(data);
-      setLoading(false)
+      setLoading(false);
     }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -33,6 +35,15 @@ function University() {
     });
   }
 
+
+  const onEditImg = () => {
+    console.log('img changed')
+  }
+
+  const onDeleteImg = () => {
+    console.log('img deleted')
+  }
+
   return (
     <>
       {loading
@@ -49,12 +60,11 @@ function University() {
           <h1>{univer.title}</h1>
           <div className="row mb">
             <div className="col-md-4 col-lg-3">
-              <div className="avatar-wrapper">
-                <img
-                  src={univer.logoUrl ? univer.logoUrl : 'https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png'}
-                  alt={univer.title}
-                />
-              </div>
+              <ImgLabel
+                img={univer.logoUrl}
+                onEdit={onEditImg}
+                onDelete={onDeleteImg}
+              />
             </div>
 
             <div className="col-md-8 col-lg-9">
