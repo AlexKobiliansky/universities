@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import './ImgLabel.sass';
 import PropTypes from "prop-types";
 import InfoLabel from "../InfoLabel/InfoLabel";
@@ -11,6 +11,8 @@ function ImgLabel({img, onEdit, onDelete}) {
   const [loading, setLoading] = useState(false);
   const hiddenFileInput = useRef(null);
   const {currentUser} = useSelector(({user}) => user);
+
+  useEffect(() => setFile(img), [img]);
 
   const handleChange = (e) => {
     let uploadedFile = e.target.files[0];

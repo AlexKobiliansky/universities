@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AddInfoLabel from "../components/InfoLabel/AddInfoLabel";
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {univerAPI} from "../api/univer";
+import ImgLabel from "../components/ImgLabel/ImgLabel";
 
 function AddUniversity() {
+  const [logoUrl, setLogoUrl] = useState('');
+
 
   const validationSchema = yup.object().shape({
     title: yup.string()
@@ -31,6 +34,7 @@ function AddUniversity() {
       city: values.city,
       site: values.site,
       alias: values.alias,
+      logoUrl: logoUrl
     }
 
     univerAPI.addUniver(addingUniver)
@@ -39,10 +43,19 @@ function AddUniversity() {
         // axios.get('http://localhost:3001/universities?end=1&sort=id&order=desc').then(({data}) => console.log(data[0]));
         alert('Университет успешно добавлен!');
         resetForm();
+        setLogoUrl('');
       })
       .catch(() => {
       alert('Не удалось добавить университет');
     })
+  }
+
+  const onEditImg = (url) => {
+    setLogoUrl(url);
+  }
+
+  const onDeleteImg = () => {
+    setLogoUrl('');
   }
 
   return (
@@ -78,12 +91,11 @@ function AddUniversity() {
           <form>
             <div className="row mb">
               <div className="col-md-4 col-lg-3">
-                <div className="avatar-wrapper">
-                  <img
-                    src='https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png'
-                    alt=''
-                  />
-                </div>
+                <ImgLabel
+                  img={logoUrl}
+                  onEdit={onEditImg}
+                  onDelete={onDeleteImg}
+                />
               </div>
 
               <div className="col-md-8 col-lg-9">

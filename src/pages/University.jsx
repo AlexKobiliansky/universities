@@ -35,7 +35,6 @@ function University() {
     });
   }
 
-
   const onEditImg = (url) => {
     univerAPI.editUniver(univerId, {logoUrl: url}).catch(() => {
       alert('Не удалось обновить данные!');
