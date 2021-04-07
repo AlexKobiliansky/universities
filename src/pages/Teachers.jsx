@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Badge from "../components/Badge";
-import DeleteButton from "../components/DeleteButton";
-import Pagination from "../components/Pagination";
+import DeleteButton from "../components/UI/DeleteButton";
+import Pagination from "../components/UI/Pagination";
 
 let data = [
   {

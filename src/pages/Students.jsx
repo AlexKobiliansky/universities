@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import DeleteButton from "../components/DeleteButton";
-import Pagination from "../components/Pagination";
+import DeleteButton from "../components/UI/DeleteButton";
+import Pagination from "../components/UI/Pagination";
 import Badge from "../components/Badge";
 
 let students = [

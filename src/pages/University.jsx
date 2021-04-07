@@ -2,15 +2,18 @@ import React, {useEffect, useState} from 'react';
 import InfoLabel from "../components/InfoLabel/InfoLabel";
 import DepartmentsList from "../components/DepartmentsList";
 import {univerAPI} from "../api/univer";
-import {NavLink, useParams} from 'react-router-dom';
-import Spinner from "../components/Spinner";
+import {useParams} from 'react-router-dom';
+import Spinner from "../components/UI/Spinner";
 import ImgLabel from "../components/ImgLabel/ImgLabel";
+import Breadcrumb from "../components/UI/Breadcrumb";
 
 function University() {
   const [loading, setLoading] = useState(true);
   const [univer, setUniver] = useState(null);
-
+  const [breadcrumbRoutes, setBreadcrumbRoutes] = useState([]);
   const univerId = useParams().id;
+
+
 
   useEffect(() => {
     univerAPI.getUniver(univerId).then(({data}) => {
@@ -19,6 +22,18 @@ function University() {
     }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setBreadcrumbRoutes([
+      {
+        path: '/',
+        title: 'Университеты'
+      },
+      {
+        path: `/university/${univer?.id}`,
+        title: univer?.title
+      }
+    ]);
+  }, [univer]);
 
   const onEditInput = (inputEntity, value) => {
     if(!value) {
@@ -53,12 +68,7 @@ function University() {
         ? <Spinner />
         : <div>
 
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item"><NavLink to="/">Университеты</NavLink></li>
-              <li className="breadcrumb-item active" aria-current="page">{univer.title}</li>
-            </ol>
-          </nav>
+          <Breadcrumb routes={breadcrumbRoutes} />
 
           <h1>{univer.title}</h1>
           <div className="row mb">

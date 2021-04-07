@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import Badge from "./Badge";
 import {Link} from "react-router-dom";
-import DeleteButton from "./DeleteButton";
+import DeleteButton from "./UI/DeleteButton";
 import PropTypes from "prop-types";
-import Spinner from "./Spinner";
+import Spinner from "./UI/Spinner";
 import {univerAPI} from "../api/univer";
-import Popup from "./Popup";
+import Popup from "./UI/Popup";
 import {useSelector} from "react-redux";
 
 function UniversitiesList({items, loading}) {

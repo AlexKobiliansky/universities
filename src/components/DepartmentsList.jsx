@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import UniversitiesList from "./UniversitiesList";
-import DeleteButton from "./DeleteButton";
+import DeleteButton from "./UI/DeleteButton";
 import {useSelector} from "react-redux";
 
 function DepartmentsList({items, univer}) {
