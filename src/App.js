@@ -12,6 +12,8 @@ import Login from "./pages/Login";
 import { Switch, Route, Redirect } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {setUser} from "./redux/reducers/user";
+import NoAuthRoute from "./components/routes/NoAuthRoute";
+import AdminRoute from "./components/routes/AdminRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,23 +34,9 @@ function App() {
             <Route path="/students" component={Students} />
             <Route path="/teachers" component={Teachers} />
             <Route path="/university/:id" component={University} exact/>
-
-            {!userData
-              ? <Switch>
-                <Route path='/registration' component={Registration}/>
-                <Route path='/login' component={Login}/>
-                <Redirect to='/'/>
-              </Switch>
-              : <Redirect to='/'/>
-            }
-
-            {userData && userData.priority < 2
-              ? <Switch>
-                <Route path="/add/university" component={AddUniversity} />
-                <Redirect to='/'/>
-              </Switch>
-              : <Redirect to='/'/>
-            }
+            <NoAuthRoute path='/login' component={Login} />
+            <NoAuthRoute path='/registration' component={Registration} />
+            <AdminRoute path="/add/university" component={AddUniversity} />
             <Redirect to='/'/>
           </Switch>
         </div>

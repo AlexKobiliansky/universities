@@ -36,12 +36,16 @@ function University() {
   }
 
 
-  const onEditImg = () => {
-    console.log('img changed')
+  const onEditImg = (url) => {
+    univerAPI.editUniver(univerId, {logoUrl: url}).catch(() => {
+      alert('Не удалось обновить данные!');
+    });
   }
 
   const onDeleteImg = () => {
-    console.log('img deleted')
+    univerAPI.editUniver(univerId, {logoUrl: ''}).catch(() => {
+      alert('Не удалось обновить данные!');
+    });
   }
 
   return (

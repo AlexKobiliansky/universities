@@ -2,27 +2,26 @@ import React, {useState, useRef} from 'react';
 import './ImgLabel.sass';
 import PropTypes from "prop-types";
 import InfoLabel from "../InfoLabel/InfoLabel";
-import axios from "axios";
+import {uploadImage} from "../../api/uploadImage";
+import {useSelector} from "react-redux";
 
 
 function ImgLabel({img, onEdit, onDelete}) {
   const [file, setFile] = useState(img);
+  const [loading, setLoading] = useState(false);
   const hiddenFileInput = useRef(null);
+  const {currentUser} = useSelector(({user}) => user);
 
   const handleChange = (e) => {
     let uploadedFile = e.target.files[0];
-    // onEdit();
-    console.log(uploadedFile);
     setFile(URL.createObjectURL(uploadedFile));
+    setLoading(true);
 
-    const formData = new FormData();
-    formData.append("file", uploadedFile);
-    formData.append('upload_preset', 'j9bhlkli-universities');
-
-    axios.post('https://api.cloudinary.com/v1_1/do1zs5utw/image/upload', formData).then(({data}) => {
-      console.log(data.url);
-    }).catch(e => console.log(e.message))
-
+    uploadImage(uploadedFile).then(url => {
+      onEdit(url);
+      setFile(url);
+      setLoading(false);
+    });
   }
 
   const handleDelete = () => {
@@ -38,6 +37,14 @@ function ImgLabel({img, onEdit, onDelete}) {
 
   return (
     <div className="img-label">
+      { loading &&
+      <div className="img-label-loading">
+        <div className="spinner-border text-primary" role="status">
+          <span className="sr-only">Загрузка...</span>
+        </div>
+      </div> }
+
+      {currentUser && currentUser.priority < 2 &&
       <div className="img-label-buttons">
         <input type="file" ref={hiddenFileInput} onChange={handleChange}/>
 
@@ -45,10 +52,11 @@ function ImgLabel({img, onEdit, onDelete}) {
           <i className="bi bi-pencil-square"/>
         </div>
 
+        {file &&
         <div className="img-label-btn img-label-delete" onClick={handleDelete}>
           <i className="bi bi-x-square-fill"/>
-        </div>
-      </div>
+        </div>}
+      </div>}
 
       <img
         src={ file ? file : 'https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png'}
