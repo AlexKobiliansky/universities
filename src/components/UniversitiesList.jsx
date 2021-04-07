@@ -7,16 +7,22 @@ import Spinner from "./UI/Spinner";
 import {univerAPI} from "../api/univer";
 import Popup from "./UI/Popup";
 import {useSelector} from "react-redux";
+import Pagination from "./UI/Pagination";
 
 function UniversitiesList({items, loading}) {
   const [universities, setUniversities] = useState(items);
   const [isOpenedPopup, setIsOpenedPopup] = useState(false);
   const [selectedItem, setSelecetedItem] = useState(null);
+  const [pageOfItems, setPageOfItems] = useState([]);
   const {currentUser} = useSelector(({user}) => user);
 
   useEffect(() => {
     setUniversities(items);
   }, [items]);
+
+  let onChangePage = (pageOfItems) => {
+    setPageOfItems(pageOfItems);
+  }
 
   let handleClickDelete = (id) => {
     const newUniversities = universities.filter(item => (item.id !== id));
@@ -44,44 +50,50 @@ function UniversitiesList({items, loading}) {
     <>
       {loading
         ? <Spinner/>
-        : <table className="table table-hover table-striped">
-          <thead>
-          <tr>
-            <th scope="col"/>
-            <th scope="col">Название</th>
-            <th scope="col">Город</th>
-            <th scope="col">Сайт</th>
-            <th/>
-          </tr>
-          </thead>
-          <tbody>
-
-          {universities?.map(item => (
-            <tr key={item.id}>
-              <td className="align-middle">
-                <Badge label={item.title.charAt(0)} img={item.logoUrl}/>
-              </td>
-
-              <td className="align-middle">
-                <Link to={`/university/${item.id}`}>{item.title}</Link>
-              </td>
-
-              <td className="align-middle">{item.city}</td>
-
-              <td className="align-middle">
-                <a href={item.site} target="_blank" rel="noreferrer">{item.site}</a>
-              </td>
-
-              <td className="align-middle">
-                {currentUser && currentUser.priority < 2 &&
-                <DeleteButton onClick={() => openPopup(item)}/>
-                }
-              </td>
+        :
+        <>
+          <table className="table table-hover table-striped">
+            <thead>
+            <tr>
+              <th scope="col"/>
+              <th scope="col">Название</th>
+              <th scope="col">Город</th>
+              <th scope="col">Сайт</th>
+              <th/>
             </tr>
-          ))
-          }
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+
+            {pageOfItems?.map(item => (
+              <tr key={item.id}>
+                <td className="align-middle">
+                  <Badge label={item.title.charAt(0)} img={item.logoUrl}/>
+                </td>
+
+                <td className="align-middle">
+                  <Link to={`/university/${item.id}`}>{item.title}</Link>
+                </td>
+
+                <td className="align-middle">{item.city}</td>
+
+                <td className="align-middle">
+                  <a href={item.site} target="_blank" rel="noreferrer">{item.site}</a>
+                </td>
+
+                <td className="align-middle">
+                  {currentUser && currentUser.priority < 2 &&
+                  <DeleteButton onClick={() => openPopup(item)}/>
+                  }
+                </td>
+              </tr>
+            ))
+            }
+            </tbody>
+          </table>
+
+          <Pagination items={universities} onChangePage={onChangePage} pageSize={10}/>
+        </>
+
       }
 
       {isOpenedPopup &&
