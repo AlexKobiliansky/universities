@@ -11,7 +11,7 @@ import Login from "./pages/Login";
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {setUser} from "./redux/reducers/user";
+import {setUser} from "./redux/reducers/userReducer";
 import NoAuthRoute from "./components/routes/NoAuthRoute";
 import AdminRoute from "./components/routes/AdminRoute";
 

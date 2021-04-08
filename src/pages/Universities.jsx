@@ -1,24 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import UniversitiesList from "../components/UniversitiesList";
-import { universitiesAPI } from '../api/universities'
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Breadcrumb from "../components/UI/Breadcrumb";
+import {fetchUniversities} from "../redux/actions/university";
 
 function Universities() {
-  const [loading, setLoading] = useState(true)
-  const [universities, setUniversities] = useState(null);
+  const dispatch = useDispatch();
+  const universities = useSelector(({university}) => university.universities);
   const {currentUser} = useSelector(({user}) => user);
+  const loading = useSelector(({university}) => university.isLoading);
+
   const [breadcrumbRoutes] = useState([{
     path: '/',
     title: 'Университеты'
   }]);
 
-  useEffect(() => {
-    universitiesAPI.getUniversities().then(({data}) => {
-      setUniversities(data);
-      setLoading(false)
-    });
+  useEffect( () => {
+    dispatch(fetchUniversities()); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -28,12 +27,11 @@ function Universities() {
 
       {<UniversitiesList items={universities} loading={loading} />}
 
-      {currentUser && currentUser.priority < 2 &&
+      {currentUser && currentUser.priority < 2 && !loading &&
         <div className="add-line">
           <Link to="/add/university" className="btn btn-primary">Добавить новый университет</Link>
         </div>
       }
-
     </>
   );
 }

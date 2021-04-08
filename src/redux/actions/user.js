@@ -1,4 +1,4 @@
-import {setUser} from '../reducers/user';
+import {setUser} from '../reducers/userReducer';
 import {userAPI} from "../../api/user";
 
 export const login = (login, password) => {

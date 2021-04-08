@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {logout} from "../redux/reducers/user";
+import {logout} from "../redux/reducers/userReducer";
 import { useHistory } from "react-router-dom";
 
 function Navbar() {
