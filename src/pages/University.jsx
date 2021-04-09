@@ -6,20 +6,21 @@ import {useParams} from 'react-router-dom';
 import Spinner from "../components/UI/Spinner";
 import ImgLabel from "../components/ImgLabel/ImgLabel";
 import Breadcrumb from "../components/UI/Breadcrumb";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchSingleUniversity, updateSingleUniversity} from "../redux/actions/university";
 
 function University() {
-  const [loading, setLoading] = useState(true);
-  const [univer, setUniver] = useState(null);
+  const dispatch = useDispatch();
+  const univer = useSelector(({university}) => university.currentUniversity);
+  const loading = useSelector(({university}) => university.isLoading);
+
   const [breadcrumbRoutes, setBreadcrumbRoutes] = useState([]);
   const univerId = useParams().id;
 
 
 
   useEffect(() => {
-    univerAPI.getUniver(univerId).then(({data}) => {
-      setUniver(data);
-      setLoading(false);
-    }); // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(fetchSingleUniversity(univerId))
   }, []);
 
   useEffect(() => {
@@ -40,26 +41,15 @@ function University() {
       return alert('Значение не может быть пустым!')
     }
 
-    let updatedUniver = {...univer}
-    updatedUniver[inputEntity] = value
-
-    setUniver(updatedUniver)
-
-    univerAPI.editUniver(univerId, {[inputEntity]: value}).catch(() => {
-      alert('Не удалось обновить данные!');
-    });
+    dispatch(updateSingleUniversity(univerId, {[inputEntity]: value}));
   }
 
   const onEditImg = (url) => {
-    univerAPI.editUniver(univerId, {logoUrl: url}).catch(() => {
-      alert('Не удалось обновить данные!');
-    });
+    dispatch(updateSingleUniversity(univerId, {logoUrl: url}));
   }
 
   const onDeleteImg = () => {
-    univerAPI.editUniver(univerId, {logoUrl: ''}).catch(() => {
-      alert('Не удалось обновить данные!');
-    });
+    dispatch(updateSingleUniversity(univerId, {logoUrl: ''}));
   }
 
   return (
