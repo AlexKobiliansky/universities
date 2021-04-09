@@ -14,6 +14,7 @@ import {useDispatch} from 'react-redux';
 import {setUser} from "./redux/reducers/userReducer";
 import NoAuthRoute from "./components/routes/NoAuthRoute";
 import AdminRoute from "./components/routes/AdminRoute";
+import Department from "./pages/Department";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
             <Route path="/students" component={Students} />
             <Route path="/teachers" component={Teachers} />
             <Route path="/university/:id" component={University} exact/>
+            <Route path="/department/:id" component={Department} exact/>
             <NoAuthRoute path='/login' component={Login} />
             <NoAuthRoute path='/registration' component={Registration} />
             <AdminRoute path="/add/university" component={AddUniversity} />

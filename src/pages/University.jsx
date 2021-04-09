@@ -7,17 +7,22 @@ import ImgLabel from "../components/ImgLabel/ImgLabel";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSingleUniversity, updateSingleUniversity} from "../redux/actions/university";
+import {fetchDepartments} from "../redux/actions/department";
 
 function University() {
   const dispatch = useDispatch();
   const univer = useSelector(({university}) => university.currentUniversity);
   const loading = useSelector(({university}) => university.isLoading);
+  const departments = useSelector(({department}) => department.departments);
 
   const [breadcrumbRoutes, setBreadcrumbRoutes] = useState([]);
   const univerId = useParams().id;
 
   useEffect(() => {
-    dispatch(fetchSingleUniversity(univerId)) // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(fetchSingleUniversity(univerId));
+    dispatch(fetchDepartments(univerId));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [univerId]);
 
   useEffect(() => {
@@ -77,7 +82,7 @@ function University() {
           </div>
           <h2>Список факультетов университета:</h2>
 
-          <DepartmentsList items={univer.departments} univer={univer.alias} />
+          <DepartmentsList items={departments} />
         </div>
       }
     </>

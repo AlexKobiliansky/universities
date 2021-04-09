@@ -1,8 +1,9 @@
 import {instance} from "./index";
 
 export const departmentsAPI = {
-  getDepartments() {
-    return instance.get(`departments/?expand=university`);
+  getDepartments(univerId=null) {
+    return instance.get(`departments/?expand=university&${
+      univerId !== null ? `universityId=${univerId}` : ''}`);
   },
 
   deleteDepartment(id) {

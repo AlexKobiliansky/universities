@@ -1,10 +1,10 @@
 import {departmentsAPI} from "../../api/departments";
 import {deleteDepartmentAC, setDepartments, setLoading} from "../reducers/departmentReducer";
 
-export const fetchDepartments = () => async dispatch  => {
+export const fetchDepartments = (id) => async dispatch  => {
   try {
     dispatch(setLoading(true));
-    const {data} = await departmentsAPI.getDepartments();
+    const {data} = await departmentsAPI.getDepartments(id);
     dispatch(setDepartments(data));
   } catch(e) {
     alert(e.response.data.message)

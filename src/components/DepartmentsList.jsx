@@ -6,8 +6,9 @@ import Pagination from "./UI/Pagination";
 import Spinner from "./UI/Spinner";
 import Popup from "./UI/Popup";
 import {deleteDepartment} from "../redux/actions/department";
+import {Link} from "react-router-dom";
 
-function DepartmentsList({items, univer, loading}) {
+function DepartmentsList({items, loading}) {
   const dispatch = useDispatch();
   const {currentUser} = useSelector(({user}) => user);
 
@@ -59,16 +60,15 @@ function DepartmentsList({items, univer, loading}) {
             {pageOfItems?.map((item, index) => (
               <tr key={item.id}>
                 <th scope="row">{(index+1) + ((currentPage-1)*pageSize)}</th>
-                <td>{item.title}</td>
-                <td>{univer ? univer : item.university?.alias}</td>
+                <td><Link to={`/department/${item.id}`}>{item.title}</Link></td>
+                <td>{item.university?.alias}</td>
                 <td>
                   {currentUser && currentUser.priority < 2 &&
                   <DeleteButton onClick={() => openPopup(item)}/>
                   }
                 </td>
               </tr>
-            ))
-            }
+            ))}
             </tbody>
           </table>
 
@@ -82,13 +82,11 @@ function DepartmentsList({items, univer, loading}) {
         text={`Вы действительно хотите удалить факультет "${selectedItem.title}"? Эту операцию невозможно будет отменить!`}
         confirmFunc={() => handleClickDelete(selectedItem.id)}
       />}
-
     </>);
 }
 
 DepartmentsList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
-  univer: PropTypes.string,
   loading: PropTypes.bool
 }
 

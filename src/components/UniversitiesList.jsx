@@ -87,7 +87,6 @@ function UniversitiesList({items, loading}) {
 
           <Pagination items={universities} onChangePage={onChangePage} pageSize={10}/>
         </>
-
       }
 
       {isOpenedPopup &&
