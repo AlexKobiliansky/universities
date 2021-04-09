@@ -4,17 +4,20 @@ import {Link} from "react-router-dom";
 import DeleteButton from "./UI/DeleteButton";
 import PropTypes from "prop-types";
 import Spinner from "./UI/Spinner";
-import {univerAPI} from "../api/univer";
 import Popup from "./UI/Popup";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Pagination from "./UI/Pagination";
+import {deleteUniversity} from "../redux/actions/university";
 
 function UniversitiesList({items, loading}) {
+  const dispatch = useDispatch();
+  const {currentUser} = useSelector(({user}) => user);
+
   const [universities, setUniversities] = useState(items);
   const [isOpenedPopup, setIsOpenedPopup] = useState(false);
   const [selectedItem, setSelecetedItem] = useState(null);
   const [pageOfItems, setPageOfItems] = useState([]);
-  const {currentUser} = useSelector(({user}) => user);
+
 
   useEffect(() => {
     setUniversities(items);
@@ -25,16 +28,7 @@ function UniversitiesList({items, loading}) {
   }
 
   let handleClickDelete = (id) => {
-    const newUniversities = universities.filter(item => (item.id !== id));
-
-    univerAPI.deleteUniver(id)
-      .catch(() => {
-        alert('Не удалось удалить университет');
-      })
-      .then(() => {
-        setUniversities(newUniversities);
-        closePopup();
-      });
+    dispatch(deleteUniversity(id)).then(() => {closePopup()});
   }
 
   const closePopup = () => {

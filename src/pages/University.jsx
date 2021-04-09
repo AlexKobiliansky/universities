@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import InfoLabel from "../components/InfoLabel/InfoLabel";
 import DepartmentsList from "../components/DepartmentsList";
-import {univerAPI} from "../api/univer";
 import {useParams} from 'react-router-dom';
 import Spinner from "../components/UI/Spinner";
 import ImgLabel from "../components/ImgLabel/ImgLabel";
@@ -17,11 +16,9 @@ function University() {
   const [breadcrumbRoutes, setBreadcrumbRoutes] = useState([]);
   const univerId = useParams().id;
 
-
-
   useEffect(() => {
-    dispatch(fetchSingleUniversity(univerId))
-  }, []);
+    dispatch(fetchSingleUniversity(univerId)) // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [univerId]);
 
   useEffect(() => {
     setBreadcrumbRoutes([

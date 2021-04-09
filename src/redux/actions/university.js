@@ -1,4 +1,5 @@
 import {
+  deleteUniversityAC,
   setCurrentUniversity,
   setLoading,
   setUniversities,
@@ -23,18 +24,24 @@ export const fetchSingleUniversity = (univerId) => async dispatch  => {
     const {data} = await univerAPI.getUniver(univerId);
     dispatch(setCurrentUniversity(data));
   } catch(e) {
-    alert(e.response.data.message)
+    alert(e.message)
   }
 };
 
-
 export const updateSingleUniversity = (univerId, obj) => async dispatch  => {
   try {
-    // dispatch(setLoading(true));
-    univerAPI.editUniver(univerId, obj).then(() => dispatch(updateSingleUniversityAC(obj))).catch((e) => {
-      alert(e.message);
-    });
+    univerAPI.editUniver(univerId, obj);
+    dispatch(updateSingleUniversityAC(obj));
   } catch(e) {
-    alert(e.response.data.message)
+    alert(`Не удалось обновить данные: ${e.message}`)
+  }
+};
+
+export const deleteUniversity = (id) => async dispatch  => {
+  try {
+    await univerAPI.deleteUniver(id);
+    dispatch(deleteUniversityAC(id));
+  } catch(e) {
+    alert(`Не удалось удалить университет: ${e.message}`)
   }
 };
