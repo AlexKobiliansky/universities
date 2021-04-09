@@ -102,7 +102,8 @@ function UniversitiesList({items, loading}) {
 }
 
 UniversitiesList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object)
+  items: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool
 }
 
 export default UniversitiesList;

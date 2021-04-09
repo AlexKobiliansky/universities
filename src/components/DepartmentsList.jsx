@@ -1,15 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
-import UniversitiesList from "./UniversitiesList";
 import DeleteButton from "./UI/DeleteButton";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Pagination from "./UI/Pagination";
+import Spinner from "./UI/Spinner";
+import Popup from "./UI/Popup";
+import {deleteDepartment} from "../redux/actions/department";
 
-function DepartmentsList({items, univer}) {
+function DepartmentsList({items, univer, loading}) {
+  const dispatch = useDispatch();
   const {currentUser} = useSelector(({user}) => user);
+
+  const [departments, setDepartments] = useState(items);
+  const [isOpenedPopup, setIsOpenedPopup] = useState(false);
+  const [selectedItem, setSelecetedItem] = useState(null);
   const [pageOfItems, setPageOfItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
+
+  useEffect(() => {
+    setDepartments(items);
+  }, [items]);
 
   let onChangePage = (pageOfItems, pageNumber) => {
     setPageOfItems(pageOfItems);
@@ -17,49 +28,68 @@ function DepartmentsList({items, univer}) {
   }
 
   let handleClickDelete = (id) => {
-    console.log('delete department: ', id);
+    dispatch(deleteDepartment(id)).then(() => {closePopup()});
   }
 
-  return ( <>
+  const closePopup = () => {
+    setIsOpenedPopup(false);
+  }
 
-    <table className="table table-hover table-striped">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Название</th>
-          <th scope="col">Университет</th>
-          <th />
-        </tr>
-        </thead>
-        <tbody>
+  const openPopup = (item) => {
+    setSelecetedItem(item);
+    setIsOpenedPopup(true);
+  }
 
-        {pageOfItems?.map((item, index) => (
-          <tr key={item.id}>
-            <th scope="row">{(index+1) + ((currentPage-1)*pageSize)}</th>
-            <td>{item.title}</td>
-            <td>{univer ? univer : item.university?.alias}</td>
-            <td>
-              {currentUser && currentUser.priority < 2 &&
-              <DeleteButton onClick={() => handleClickDelete(item.id)}/>
-              }
-            </td>
-          </tr>
-        ))
-        }
-        </tbody>
-      </table>
+  return (
+    <>
+      {loading
+        ? <Spinner/>
+        : <>
+          <table className="table table-hover table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Название</th>
+              <th scope="col">Университет</th>
+              <th />
+            </tr>
+            </thead>
+            <tbody>
 
-    <Pagination items={items} onChangePage={onChangePage} pageSize={pageSize}/>
+            {pageOfItems?.map((item, index) => (
+              <tr key={item.id}>
+                <th scope="row">{(index+1) + ((currentPage-1)*pageSize)}</th>
+                <td>{item.title}</td>
+                <td>{univer ? univer : item.university?.alias}</td>
+                <td>
+                  {currentUser && currentUser.priority < 2 &&
+                  <DeleteButton onClick={() => openPopup(item)}/>
+                  }
+                </td>
+              </tr>
+            ))
+            }
+            </tbody>
+          </table>
 
+          <Pagination items={departments} onChangePage={onChangePage} pageSize={pageSize}/>
+        </> }
 
+      {isOpenedPopup &&
+      <Popup
+        onClose={closePopup}
+        title="Подтверждение удаления"
+        text={`Вы действительно хотите удалить факультет "${selectedItem.title}"? Эту операцию невозможно будет отменить!`}
+        confirmFunc={() => handleClickDelete(selectedItem.id)}
+      />}
 
-
-  </>);
+    </>);
 }
 
-UniversitiesList.propTypes = {
+DepartmentsList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
-  univer: PropTypes.string
+  univer: PropTypes.string,
+  loading: PropTypes.bool
 }
 
 export default DepartmentsList;
