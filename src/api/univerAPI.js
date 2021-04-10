@@ -2,7 +2,7 @@ import {instance} from "./index";
 
 export const univerAPI = {
   getUniver(id) {
-    return instance.get(`universities/${id}?embed=departments`)
+    return instance.get(`universities/${id}`)
   },
 
   editUniver(id, object) {

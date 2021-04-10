@@ -1,4 +1,10 @@
-import {SET_DEPARTMENTS, DELETE_DEPARTMENT, SET_LOADING} from "../types";
+import {
+  SET_DEPARTMENTS,
+  DELETE_DEPARTMENT,
+  SET_LOADING_DEPARTMENT,
+  SET_SINGLE_DEPARTMENT,
+  UPDATE_DEPARTMENT
+} from "../types";
 
 const defaultState = {
   departments: [],
@@ -8,7 +14,7 @@ const defaultState = {
 
 export default function departmentReducer (state=defaultState, action) {
   switch (action.type) {
-    case SET_LOADING:
+    case SET_LOADING_DEPARTMENT:
       return {
         ...state,
         isLoading: action.payload
@@ -18,6 +24,20 @@ export default function departmentReducer (state=defaultState, action) {
         ...state,
         departments: action.payload,
         isLoading: false
+      }
+    case SET_SINGLE_DEPARTMENT:
+      return {
+        ...state,
+        currentDepartment: action.payload,
+        isLoading: false
+      }
+    case UPDATE_DEPARTMENT:
+      return {
+        ...state,
+        currentDepartment: {
+          ...state.currentDepartment,
+          [Object.keys(action.payload)[0]]: Object.values(action.payload)[0]
+        },
       }
     case DELETE_DEPARTMENT:
       return {
@@ -30,5 +50,7 @@ export default function departmentReducer (state=defaultState, action) {
 }
 
 export const setDepartments = departments => ({type: SET_DEPARTMENTS, payload: departments});
+export const setSingleDepartmentAC = department => ({type: SET_SINGLE_DEPARTMENT, payload: department});
 export const deleteDepartmentAC = id => ({type: DELETE_DEPARTMENT, payload: id});
-export const setLoading = loading => ({type: SET_LOADING, payload: loading});
+export const setLoading = loading => ({type: SET_LOADING_DEPARTMENT, payload: loading});
+export const updateDepartmentAC = obj => ({type: UPDATE_DEPARTMENT, payload: obj});

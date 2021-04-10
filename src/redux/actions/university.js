@@ -6,7 +6,7 @@ import {
   updateSingleUniversityAC
 } from "../reducers/universityReducer";
 import {universitiesAPI} from "../../api/universities";
-import {univerAPI} from "../../api/univer";
+import {univerAPI} from "../../api/univerAPI";
 
 export const fetchUniversities = () => async dispatch  => {
   try {

@@ -21,7 +21,6 @@ function University() {
   useEffect(() => {
     dispatch(fetchSingleUniversity(univerId));
     dispatch(fetchDepartments(univerId));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [univerId]);
 

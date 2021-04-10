@@ -1,5 +1,13 @@
-import {departmentsAPI} from "../../api/departments";
-import {deleteDepartmentAC, setDepartments, setLoading} from "../reducers/departmentReducer";
+import {departmentsAPI} from "../../api/departmentsAPI";
+import {
+  deleteDepartmentAC,
+  setDepartments,
+  setLoading,
+  setSingleDepartmentAC,
+  updateDepartmentAC
+} from "../reducers/departmentReducer";
+import {univerAPI} from "../../api/univerAPI";
+import {updateSingleUniversityAC} from "../reducers/universityReducer";
 
 export const fetchDepartments = (id) => async dispatch  => {
   try {
@@ -17,5 +25,27 @@ export const deleteDepartment = (id) => async dispatch  => {
     dispatch(deleteDepartmentAC(id));
   } catch(e) {
     alert(`Не удалось удалить факультет: ${e.message}`)
+  }
+};
+
+
+export const fetchSingleDepartment = (id) => async dispatch  => {
+  try {
+    dispatch(setLoading(true));
+    const {data} = await departmentsAPI.getDepartment(id);
+    dispatch(setSingleDepartmentAC(data));
+    return data;
+  } catch(e) {
+    alert(e.message)
+  }
+};
+
+
+export const updateDepartment = (id, obj) => async dispatch  => {
+  try {
+    await departmentsAPI.editDepartment(id, obj);
+    dispatch(updateDepartmentAC(obj));
+  } catch(e) {
+    alert(`Не удалось обновить данные: ${e.message}`)
   }
 };

@@ -6,6 +6,14 @@ export const departmentsAPI = {
       univerId !== null ? `universityId=${univerId}` : ''}`);
   },
 
+  getDepartment(id) {
+    return instance.get(`departments/${id}`)
+  },
+
+  editDepartment(id, object) {
+    return instance.patch(`departments/${id}`, object)
+  },
+
   deleteDepartment(id) {
     return instance.delete(`departments/${id}`)
   },
