@@ -16,6 +16,7 @@ import NoAuthRoute from "./components/routes/NoAuthRoute";
 import AdminRoute from "./components/routes/AdminRoute";
 import Department from "./pages/Department";
 import AddDepartment from "./pages/AddDepartment";
+import Main from "./pages/Main";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,8 @@ function App() {
       <div className="page-wrapper">
         <div className="container">
           <Switch>
-            <Route path="/" component={Universities} exact />
+            <Route path="/" component={Main} exact />
+            <Route path="/universities" component={Universities} exact />
             <Route path="/departments" component={Departments} />
             <Route path="/students" component={Students} />
             <Route path="/teachers" component={Teachers} />

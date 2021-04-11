@@ -4,6 +4,9 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {fetchUniversities} from "../redux/actions/university";
+import {mainRoute, universitiesRoute} from "../config/breadcrumbs";
+
+const breadcrumbs = [mainRoute(), universitiesRoute()]
 
 function Universities() {
   const dispatch = useDispatch();
@@ -11,10 +14,7 @@ function Universities() {
   const {currentUser} = useSelector(({user}) => user);
   const loading = useSelector(({university}) => university.isLoading);
 
-  const [breadcrumbRoutes] = useState([{
-    path: '/',
-    title: 'Университеты'
-  }]);
+  const [breadcrumbRoutes] = useState(breadcrumbs);
 
   useEffect( () => {
     dispatch(fetchUniversities()); // eslint-disable-next-line react-hooks/exhaustive-deps

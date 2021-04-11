@@ -8,6 +8,7 @@ import Breadcrumb from "../components/UI/Breadcrumb";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSingleUniversity, updateSingleUniversity} from "../redux/actions/university";
 import {fetchDepartments} from "../redux/actions/department";
+import {mainRoute, singleUniversityRoute, universitiesRoute} from "../config/breadcrumbs";
 
 function University() {
   const dispatch = useDispatch();
@@ -26,15 +27,9 @@ function University() {
 
   useEffect(() => {
     setBreadcrumbRoutes([
-      {
-        path: '/',
-        title: 'Университеты'
-      },
-      {
-        path: `/university/${univer?.id}`,
-        title: univer?.title
-      }
-    ]);
+      mainRoute(),
+      universitiesRoute(),
+      singleUniversityRoute(univer?.id, univer?.title)]);
   }, [univer]);
 
   const onEditInput = (inputEntity, value) => {

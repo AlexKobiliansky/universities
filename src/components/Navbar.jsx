@@ -18,8 +18,11 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light fixed-top" style={{backgroundColor: '#e3f2fd'}}>
       <div className="container">
         <ul className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <NavLink to="/" exact className="nav-link" activeClassName="active">Главная</NavLink>
+          </li>
             <li className="nav-item">
-              <NavLink to="/" exact className="nav-link" activeClassName="active">Университеты</NavLink>
+              <NavLink to="/universities" exact className="nav-link" activeClassName="active">Университеты</NavLink>
             </li>
             <li className="nav-item">
               <NavLink to="/departments" exact className="nav-link" activeClassName="active">Факультеты</NavLink>

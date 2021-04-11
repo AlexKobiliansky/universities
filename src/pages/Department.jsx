@@ -6,6 +6,8 @@ import Spinner from "../components/UI/Spinner";
 import InfoLabel from "../components/InfoLabel/InfoLabel";
 import SelectLabel from "../components/SelectLabel/SelectLabel";
 import {fetchUniversities} from "../redux/actions/university";
+import Breadcrumb from "../components/UI/Breadcrumb";
+import {departmentsRoute, mainRoute, singleDepartmentRoute} from "../config/breadcrumbs";
 
 function Department() {
   const loading = useSelector(({department}) => department.isLoading);
@@ -15,6 +17,7 @@ function Department() {
   const department = useSelector(({department}) => department.currentDepartment);
   const [selectValues, setSelectValues] = useState([]);
   const [selectNames, setSelectNames] = useState([]);
+  const [breadcrumbRoutes, setBreadcrumbRoutes] = useState([]);
 
 
   useLayoutEffect(() => {
@@ -26,7 +29,15 @@ function Department() {
   useEffect(() => {
     setSelectValues(universities?.map(item => item.id));
     setSelectNames(universities?.map(item => item.title));
-  }, [universities])
+  }, [universities]);
+
+  useEffect(() => {
+    setBreadcrumbRoutes([
+      mainRoute(),
+      departmentsRoute(),
+      singleDepartmentRoute(department?.id, department?.title)
+    ]);
+  }, [department]);
 
   const onEditInput = (inputEntity, value) => {
     if (!value) {
@@ -45,6 +56,7 @@ function Department() {
       {loading
         ? <Spinner/>
         : <div>
+          <Breadcrumb routes={breadcrumbRoutes} />
           <h1>{department.title}</h1>
           <InfoLabel title="Название" value={department.title} entity="title" onEdit={onEditInput}/>
           <SelectLabel

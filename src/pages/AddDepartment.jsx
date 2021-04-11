@@ -6,6 +6,14 @@ import SelectLabel from "../components/SelectLabel/SelectLabel";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUniversities} from "../redux/actions/university";
 import {departmentsAPI} from "../api/departmentsAPI";
+import Breadcrumb from "../components/UI/Breadcrumb";
+import {addDepartmentRoute, departmentsRoute, mainRoute} from "../config/breadcrumbs";
+
+const breadcrumbs = [
+  mainRoute(),
+  departmentsRoute(),
+  addDepartmentRoute(),
+]
 
 function AddDepartment() {
   const dispatch = useDispatch();
@@ -13,6 +21,7 @@ function AddDepartment() {
 
   const [selectValues, setSelectValues] = useState([]);
   const [selectNames, setSelectNames] = useState([]);
+  const [breadcrumbRoutes] = useState(breadcrumbs);
 
   useLayoutEffect(() => {
     dispatch(fetchUniversities());
@@ -52,7 +61,8 @@ function AddDepartment() {
 
   return (
     <div>
-      <h1>Добавление факультета</h1>
+      <Breadcrumb routes = {breadcrumbRoutes} />
+      <h1>Добавить факультет</h1>
 
       <Formik
         initialValues={{
@@ -78,7 +88,6 @@ function AddDepartment() {
           setFieldValue,
           setFieldTouched
           }) => (
-
 
           <form>
             <AddInfoLabel
@@ -106,8 +115,6 @@ function AddDepartment() {
           </form>
         )}
       </Formik>
-
-
     </div>
   );
 }

@@ -4,9 +4,18 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import {univerAPI} from "../api/univerAPI";
 import ImgLabel from "../components/ImgLabel/ImgLabel";
+import Breadcrumb from "../components/UI/Breadcrumb";
+import {addUniversityRoute, mainRoute, universitiesRoute} from "../config/breadcrumbs";
+
+const breadcrumbs = [
+  mainRoute(),
+  universitiesRoute(),
+  addUniversityRoute()
+]
 
 function AddUniversity() {
   const [logoUrl, setLogoUrl] = useState('');
+  const [breadcrumbRoutes] = useState(breadcrumbs);
 
 
   const validationSchema = yup.object().shape({
@@ -46,8 +55,8 @@ function AddUniversity() {
         setLogoUrl('');
       })
       .catch(() => {
-      alert('Не удалось добавить университет');
-    })
+        alert('Не удалось добавить университет');
+      })
   }
 
   const onEditImg = (url) => {
@@ -60,6 +69,7 @@ function AddUniversity() {
 
   return (
     <div>
+      <Breadcrumb routes = {breadcrumbRoutes} />
       <h1>Добавление университета</h1>
 
       <Formik
@@ -70,7 +80,7 @@ function AddUniversity() {
           alias: ''
         }}
         validateOnBlur
-        onSubmit={(values, { resetForm }) => {
+        onSubmit={(values, {resetForm}) => {
           submitForm(values, resetForm);
         }}
         validationSchema={validationSchema}
@@ -134,7 +144,9 @@ function AddUniversity() {
                     error={touched.alias && errors.alias ? errors.alias : ''}
                   />
                   <div className="margin-top align-right">
-                    <button type="submit" disabled={(!isValid && dirty)} className="btn btn-primary" onClick={handleSubmit}>Сохранить</button>
+                    <button type="submit" disabled={(!isValid && dirty)} className="btn btn-primary"
+                            onClick={handleSubmit}>Сохранить
+                    </button>
                   </div>
                 </div>
               </div>
