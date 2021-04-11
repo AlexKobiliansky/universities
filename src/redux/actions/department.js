@@ -6,8 +6,6 @@ import {
   setSingleDepartmentAC,
   updateDepartmentAC
 } from "../reducers/departmentReducer";
-import {univerAPI} from "../../api/univerAPI";
-import {updateSingleUniversityAC} from "../reducers/universityReducer";
 
 export const fetchDepartments = (id) => async dispatch  => {
   try {
@@ -27,7 +25,6 @@ export const deleteDepartment = (id) => async dispatch  => {
     alert(`Не удалось удалить факультет: ${e.message}`)
   }
 };
-
 
 export const fetchSingleDepartment = (id) => async dispatch  => {
   try {

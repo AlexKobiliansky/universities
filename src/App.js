@@ -15,6 +15,7 @@ import {setUser} from "./redux/reducers/userReducer";
 import NoAuthRoute from "./components/routes/NoAuthRoute";
 import AdminRoute from "./components/routes/AdminRoute";
 import Department from "./pages/Department";
+import AddDepartment from "./pages/AddDepartment";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
             <NoAuthRoute path='/login' component={Login} />
             <NoAuthRoute path='/registration' component={Registration} />
             <AdminRoute path="/add/university" component={AddUniversity} />
+            <AdminRoute path="/add/department" component={AddDepartment} />
             <Redirect to='/'/>
           </Switch>
         </div>

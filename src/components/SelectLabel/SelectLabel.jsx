@@ -2,7 +2,7 @@ import React from 'react';
 import './SelectLabel.sass';
 import PropTypes from "prop-types";
 
-function SelectLabel({title, currentValue, values, names, entity, onChange}) {
+function SelectLabel({title, currentValue, values, names, entity, onChange, error}) {
 
   const handleChange = (e) => {
     onChange(entity, e.target.value);
@@ -12,12 +12,24 @@ function SelectLabel({title, currentValue, values, names, entity, onChange}) {
     <div className="select-label">
       <div className="select-label-title">Название</div>
       <div className="select-label-value">
-        <select name={title} className="form-control" onChange={handleChange} value={currentValue}>
+        <select
+          name={title}
+          className="form-control"
+          onChange={handleChange}
+          value={currentValue}
+          defaultValue={currentValue ? undefined : 'DEFAULT'}
+        >
+
+          {!currentValue && <option value="DEFAULT" disabled>Выберите из списка ...</option>}
           {values.map((value, index) => {
-              return <option key={value} value={value}>{names[index]}</option>
+              return <option
+                key={value}
+                value={value}
+              >{names[index]}</option>
             }
           )}
         </select>
+        {error && <div className="error-message">{error}</div> }
       </div>
     </div>
   );

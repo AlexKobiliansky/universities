@@ -5,7 +5,7 @@ import {fetchSingleDepartment, updateDepartment} from "../redux/actions/departme
 import Spinner from "../components/UI/Spinner";
 import InfoLabel from "../components/InfoLabel/InfoLabel";
 import SelectLabel from "../components/SelectLabel/SelectLabel";
-import {fetchUniversities, updateSingleUniversity} from "../redux/actions/university";
+import {fetchUniversities} from "../redux/actions/university";
 
 function Department() {
   const loading = useSelector(({department}) => department.isLoading);
@@ -18,12 +18,10 @@ function Department() {
 
 
   useLayoutEffect(() => {
-    dispatch(fetchSingleDepartment(departmentId)); // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(fetchSingleDepartment(departmentId));
+    dispatch(fetchUniversities());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    dispatch(fetchUniversities()); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   useEffect(() => {
     setSelectValues(universities?.map(item => item.id));
@@ -56,7 +54,6 @@ function Department() {
             names={selectNames}
             entity="universityId"
             onChange={onChangeSelect}
-            items={universities}
           />
         </div>
       }

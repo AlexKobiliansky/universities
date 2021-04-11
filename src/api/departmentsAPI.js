@@ -17,4 +17,8 @@ export const departmentsAPI = {
   deleteDepartment(id) {
     return instance.delete(`departments/${id}`)
   },
+
+  addDepartment(department) {
+    return instance.post(`departments/`, department)
+  }
 }
