@@ -11,7 +11,10 @@ const defaultState = {
   isLoading: false,
   currentUniversity: {},
   search: '',
-  searchData: []
+  searchData: [],
+  sortBy: '',
+  sortOrder: null,
+  sortData: []
 }
 
 export default function userReducer (state=defaultState, action) {

@@ -21,4 +21,3 @@ export const SET_LOADING_DEPARTMENT = "SET_LOADING_DEPARTMENT";
 
 //general
 export const SET_LOADING = "SET_LOADING";
-

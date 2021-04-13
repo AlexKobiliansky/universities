@@ -8,6 +8,10 @@ import Popup from "./UI/Popup";
 import {useDispatch, useSelector} from "react-redux";
 import Pagination from "./UI/Pagination";
 import {deleteUniversity} from "../redux/actions/university";
+import classnames from "classnames";
+
+const TITLE = 'title';
+const CITY = 'city';
 
 function UniversitiesList({items, loading}) {
   const dispatch = useDispatch();
@@ -18,6 +22,9 @@ function UniversitiesList({items, loading}) {
   const [selectedItem, setSelecetedItem] = useState(null);
   const [pageOfItems, setPageOfItems] = useState([]);
 
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrderASC, setSortOrderASC] = useState(true);
+  
   const createMarkup = html => {
     return {__html: html}
   }
@@ -25,6 +32,26 @@ function UniversitiesList({items, loading}) {
   useEffect(() => {
     setUniversities(items);
   }, [items]);
+
+  useEffect(() => {
+    switch (sortBy) {
+      case TITLE:
+        sortOrderASC
+          ? universities.sort((a, b) => b.title < a.title ? 1 : -1)
+          : universities.sort((a, b) => b.title > a.title ? 1 : -1);
+        break;
+      case CITY:
+        sortOrderASC
+          ? universities.sort((a, b) => b.city < a.city ? 1 : -1)
+          : universities.sort((a, b) => b.city > a.city ? 1 : -1);
+        break;
+      default:
+        return
+    }
+
+    setUniversities([...universities]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortBy, sortOrderASC])
 
   let onChangePage = (pageOfItems) => {
     setPageOfItems(pageOfItems);
@@ -43,6 +70,11 @@ function UniversitiesList({items, loading}) {
     setIsOpenedPopup(true);
   }
 
+  const handleSort = (sortEntity) => {
+    sortEntity !== sortBy ? setSortOrderASC(true) : setSortOrderASC(!sortOrderASC);
+    setSortBy(sortEntity);
+  }
+
   return (
     <>
       {loading
@@ -53,8 +85,13 @@ function UniversitiesList({items, loading}) {
             <thead>
             <tr>
               <th scope="col"/>
-              <th scope="col">Название</th>
-              <th scope="col">Город</th>
+              <th scope="col"
+                  onClick={() => handleSort(TITLE)}
+                  className={classnames('sorting-head', {'sorting': sortBy === TITLE}, {'desc': !sortOrderASC})}
+              > Название</th>
+              <th scope="col"
+                  onClick={() => handleSort(CITY)}
+                  className={classnames('sorting-head', {'sorting': sortBy === CITY}, {'desc': !sortOrderASC})}>Город</th>
               <th scope="col">Сайт</th>
               <th/>
             </tr>
@@ -96,7 +133,7 @@ function UniversitiesList({items, loading}) {
       <Popup
         onClose={closePopup}
         title="Подтверждение удаления?"
-        text={`Вы действительно хотите удалить университет "${selectedItem.title}" со всеми факультетами? Эту операцию невозможно будет отменить?`}
+        text={`Вы действительно хотите удалить университет <strong>"${selectedItem.title}"</strong> со всеми факультетами? Эту операцию невозможно будет отменить!`}
         confirmFunc={() => handleClickDelete(selectedItem.id)}
       />}
     </>
