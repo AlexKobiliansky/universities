@@ -4,6 +4,9 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 class Pagination extends React.Component {
+
+
+
   constructor(props) {
     super(props);
     this.state = { pager: {} };
@@ -14,6 +17,8 @@ class Pagination extends React.Component {
     if (this.props.items && this.props.items.length) {
       this.setPage(this.props.initialPage);
     }
+
+
   }
 
   componentDidUpdate(prevProps) {
@@ -46,6 +51,11 @@ class Pagination extends React.Component {
   }
 
   getPager(totalItems, currentPage, pageSize) {
+
+    if (totalItems === 0) {
+      totalItems = 1;
+    }
+
     // default to first page
     currentPage = currentPage || 1;
 
@@ -81,6 +91,8 @@ class Pagination extends React.Component {
     // create an array of pages to ng-repeat in the pager control
     let pages = [...Array((endPage + 1) - startPage).keys()].map(i => startPage + i);
 
+
+
     // return object with all pager properties required by the view
     return {
       totalItems: totalItems,
@@ -102,6 +114,8 @@ class Pagination extends React.Component {
       // don't display pager if there is only 1 page
       return null;
     }
+
+
 
     return (
       <ul className="pagination">

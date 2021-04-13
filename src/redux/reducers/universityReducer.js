@@ -3,13 +3,15 @@ import {
   SET_LOADING,
   SET_SINGLE_UNIVERSITY,
   UPDATE_SINGLE_UNIVERSITY,
-  DELETE_UNIVERSITY
+  DELETE_UNIVERSITY, SEARCH_QUERY_UNIVERSITY, SEARCH_DATA_UNIVERSITY
 } from "../types";
 
 const defaultState = {
   universities: [],
   isLoading: false,
-  currentUniversity: {}
+  currentUniversity: {},
+  search: '',
+  searchData: []
 }
 
 export default function userReducer (state=defaultState, action) {
@@ -44,6 +46,16 @@ export default function userReducer (state=defaultState, action) {
         ...state,
         universities: state.universities.filter(item => item.id !== action.payload),
       }
+    case SEARCH_QUERY_UNIVERSITY:
+      return {
+        ...state,
+        search: action.payload
+    }
+    case SEARCH_DATA_UNIVERSITY:
+      return {
+        ...state,
+        searchData: action.payload
+      }
     default:
       return state
   }
@@ -56,3 +68,5 @@ export const setCurrentUniversity = university => ({type: SET_SINGLE_UNIVERSITY,
 export const updateSingleUniversityAC = obj => ({type: UPDATE_SINGLE_UNIVERSITY, payload: obj});
 export const deleteUniversityAC = id => ({type: DELETE_UNIVERSITY, payload: id});
 export const setLoading = loading => ({type: SET_LOADING, payload: loading});
+export const searchQueryUniversity = searchQuery => ({type: SEARCH_QUERY_UNIVERSITY, payload: searchQuery});
+export const setSearchDataUniversity = searchData => ({type: SEARCH_DATA_UNIVERSITY, payload: searchData});

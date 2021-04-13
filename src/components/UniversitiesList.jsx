@@ -18,6 +18,9 @@ function UniversitiesList({items, loading}) {
   const [selectedItem, setSelecetedItem] = useState(null);
   const [pageOfItems, setPageOfItems] = useState([]);
 
+  const createMarkup = html => {
+    return {__html: html}
+  }
 
   useEffect(() => {
     setUniversities(items);
@@ -39,7 +42,7 @@ function UniversitiesList({items, loading}) {
     setSelecetedItem(item);
     setIsOpenedPopup(true);
   }
-
+  
   return (
     <>
       {loading
@@ -65,10 +68,10 @@ function UniversitiesList({items, loading}) {
                 </td>
 
                 <td className="align-middle">
-                  <Link to={`/university/${item.id}`}>{item.title}</Link>
+                  <Link to={`/university/${item.id}`} dangerouslySetInnerHTML={createMarkup(item.title)} />
                 </td>
 
-                <td className="align-middle">{item.city}</td>
+                <td className="align-middle" ><span dangerouslySetInnerHTML={createMarkup(item.city)} /></td>
 
                 <td className="align-middle">
                   <a href={item.site} target="_blank" rel="noreferrer">{item.site}</a>
