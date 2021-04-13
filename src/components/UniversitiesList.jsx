@@ -24,7 +24,7 @@ function UniversitiesList({items, loading}) {
 
   const [sortBy, setSortBy] = useState(null);
   const [sortOrderASC, setSortOrderASC] = useState(true);
-  
+
   const createMarkup = html => {
     return {__html: html}
   }
