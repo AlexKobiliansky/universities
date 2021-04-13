@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import './SearchLabel.sass'
 
-function SearchLabel({placeholder, onInput}) {
+function SearchLabel({placeholder, onInput, currValue}) {
   return (
     <label className="search-label">
       <div className="input-group">
@@ -16,6 +16,7 @@ function SearchLabel({placeholder, onInput}) {
           className="form-control"
           placeholder={placeholder}
           onChange={onInput}
+          value={currValue}
         />
       </div>
 
@@ -25,6 +26,7 @@ function SearchLabel({placeholder, onInput}) {
 
 SearchLabel.propTypes = {
   placeholder: PropTypes.string,
+  currValue: PropTypes.string,
   onInput: PropTypes.func.isRequired
 }
 

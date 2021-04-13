@@ -72,6 +72,7 @@ function Universities() {
       <SearchLabel
         placeholder="Поиск по университетам"
         onInput={handleSearch}
+        currValue={search}
       />
 
       {<UniversitiesList

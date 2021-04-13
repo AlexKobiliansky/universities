@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 function Popup({title, text, onClose, confirmFunc}) {
+  const createMarkup = html => {
+    return {__html: html}
+  }
+
   return (
     <div className="popup-overlay">
       <div className="popup" tabIndex="-1" aria-hidden="true">
@@ -14,7 +18,7 @@ function Popup({title, text, onClose, confirmFunc}) {
               </button>
             </div>
             <div className="modal-body">
-              {text}
+              <span dangerouslySetInnerHTML={createMarkup(text)}/>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={onClose}>Отмена</button>

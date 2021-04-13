@@ -42,7 +42,7 @@ function UniversitiesList({items, loading}) {
     setSelecetedItem(item);
     setIsOpenedPopup(true);
   }
-  
+
   return (
     <>
       {loading
