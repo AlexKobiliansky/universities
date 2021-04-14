@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import DepartmentsList from "../components/DepartmentsList";
+import DepartmentsList from "../components/Departments/DepartmentsList";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchDepartments} from "../redux/actions/department";
 import {Link} from "react-router-dom";

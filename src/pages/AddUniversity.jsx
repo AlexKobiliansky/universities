@@ -1,22 +1,45 @@
 import React, {useState} from 'react';
 import AddInfoLabel from "../components/InfoLabel/AddInfoLabel";
-import {Formik} from 'formik';
+import {Formik, setIn} from 'formik';
 import * as yup from 'yup';
 import {univerAPI} from "../api/univerAPI";
 import ImgLabel from "../components/ImgLabel/ImgLabel";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {addUniversityRoute, mainRoute, universitiesRoute} from "../config/breadcrumbs";
+import axios from "axios";
+import {departmentsAPI} from "../api/departmentsAPI";
+import DepartmentDynamicLabel from "../components/Departments/DepartmentDynamicLabel";
 
 const breadcrumbs = [
   mainRoute(),
   universitiesRoute(),
   addUniversityRoute()
-]
+];
 
 function AddUniversity() {
   const [logoUrl, setLogoUrl] = useState('');
   const [breadcrumbRoutes] = useState(breadcrumbs);
+  const [departmentsNum, setDepartmentsNum] = useState(0);
+  const [departments, setDepartments] = useState([]);
 
+  function addComponent() {
+    setDepartments([...departments, {id: departmentsNum, title: ''}]);
+    setDepartmentsNum(departmentsNum+1);
+  }
+
+  const handleChange = e => {
+    const newDepartments = departments.map(a => {
+      if (a.id === parseInt(e.target.name)) {
+        a.title = e.target.value;
+      }
+      return a;
+    });
+    setDepartments(newDepartments)
+  }
+
+  const handleDelete = (i) => {
+    setDepartments(departments.filter(a => a.id !== parseInt(i)));
+  }
 
   const validationSchema = yup.object().shape({
     title: yup.string()
@@ -36,7 +59,7 @@ function AddUniversity() {
       .required('Введите краткое название университета'),
   });
 
-  const submitForm = (values, resetForm) => {
+  const submitForm = async (values, resetForm) => {
 
     const addingUniver = {
       title: values.title,
@@ -46,17 +69,29 @@ function AddUniversity() {
       logoUrl: logoUrl
     }
 
-    univerAPI.addUniver(addingUniver)
-      .then(() => {
-        //TODO: api for posterior adding departmens with added university
-        // axios.get('http://localhost:3001/universities?end=1&sort=id&order=desc').then(({data}) => console.log(data[0]));
-        alert('Университет успешно добавлен!');
-        resetForm();
-        setLogoUrl('');
+    try {
+      await univerAPI.addUniver(addingUniver);
+      alert('Университет успешно добавлен!');
+
+      const newUniver = await axios.get('http://localhost:3001/universities?end=1&sort=id&order=desc').then(({data}) => data[0]);
+
+      await departments.forEach(item => {
+        item.title.length > 0 &&
+          departmentsAPI.addDepartment({title: item.title, universityId: newUniver.id})
+            .catch(() => {
+              alert('Не удалось добавить факультет');
+            })
+
       })
-      .catch(() => {
-        alert('Не удалось добавить университет');
-      })
+
+      setDepartmentsNum(0);
+      setDepartments([]);
+      resetForm();
+      setLogoUrl('');
+
+      } catch (e) {
+      alert('Не удалось добавить университет');
+    }
   }
 
   const onEditImg = (url) => {
@@ -154,6 +189,18 @@ function AddUniversity() {
           </form>
         )}
       </Formik>
+
+      {departments.map(item => {
+        return <DepartmentDynamicLabel
+          key={item.id}
+          name={item.id}
+          value={item.title}
+          handleChange={handleChange}
+          handleDelete={handleDelete}
+        />
+      })}
+
+      <button className="btn btn-primary" onClick={addComponent}>Добавить факультет</button>
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
-import DeleteButton from "./UI/DeleteButton";
+import DeleteButton from "../UI/DeleteButton";
 import {useDispatch, useSelector} from "react-redux";
-import Pagination from "./UI/Pagination";
-import Spinner from "./UI/Spinner";
-import Popup from "./UI/Popup";
-import {deleteDepartment} from "../redux/actions/department";
+import Pagination from "../UI/Pagination";
+import Spinner from "../UI/Spinner";
+import Popup from "../UI/Popup";
+import {deleteDepartment} from "../../redux/actions/department";
 import {Link} from "react-router-dom";
 
 function DepartmentsList({items, loading}) {

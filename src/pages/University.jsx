@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import InfoLabel from "../components/InfoLabel/InfoLabel";
-import DepartmentsList from "../components/DepartmentsList";
+import DepartmentsList from "../components/Departments/DepartmentsList";
 import {useParams} from 'react-router-dom';
 import Spinner from "../components/UI/Spinner";
 import ImgLabel from "../components/ImgLabel/ImgLabel";
