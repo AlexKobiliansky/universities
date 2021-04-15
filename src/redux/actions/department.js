@@ -17,15 +17,6 @@ export const fetchDepartments = (id) => async dispatch  => {
   }
 };
 
-export const deleteDepartment = (id) => async dispatch  => {
-  try {
-    await departmentAPI.deleteDepartment(id);
-    dispatch(deleteDepartmentAC(id));
-  } catch(e) {
-    alert(`Не удалось удалить факультет: ${e.message}`)
-  }
-};
-
 export const fetchSingleDepartment = (id) => async dispatch  => {
   try {
     dispatch(setLoading(true));
@@ -44,5 +35,14 @@ export const updateDepartment = (id, obj) => async dispatch  => {
     dispatch(updateDepartmentAC(obj));
   } catch(e) {
     alert(`Не удалось обновить данные: ${e.message}`)
+  }
+};
+
+export const deleteDepartment = (id) => async dispatch  => {
+  try {
+    await departmentAPI.deleteDepartment(id);
+    dispatch(deleteDepartmentAC(id));
+  } catch(e) {
+    alert(`Не удалось удалить факультет: ${e.message}`)
   }
 };

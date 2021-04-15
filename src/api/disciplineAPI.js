@@ -6,7 +6,19 @@ export const disciplineAPI = {
       departmentId !== null ? `departmentId=${departmentId}` : ''}`);
   },
 
+  getDiscipline(id) {
+    return instance.get(`disciplines/${id}`)
+  },
+
+  editDiscipline(id, object) {
+    return instance.patch(`disciplines/${id}`, object)
+  },
+
   deleteDiscipline(id) {
     return instance.delete(`disciplines/${id}`)
   },
+
+  addDiscipline(discipline) {
+    return instance.post(`disciplines/`, discipline)
+  }
 }
