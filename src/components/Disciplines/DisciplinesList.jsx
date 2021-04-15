@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
-import DeleteButton from "../UI/DeleteButton";
 import {useDispatch, useSelector} from "react-redux";
-import Pagination from "../UI/Pagination";
 import Spinner from "../UI/Spinner";
-import Popup from "../UI/Popup";
-import {deleteDepartment} from "../../redux/actions/department";
 import {Link} from "react-router-dom";
+import DeleteButton from "../UI/DeleteButton";
+import Pagination from "../UI/Pagination";
+import Popup from "../UI/Popup";
 
-function DepartmentsList({items, loading}) {
+function DisciplinesList({items, loading}) {
   const dispatch = useDispatch();
   const {currentUser} = useSelector(({user}) => user);
 
-  const [departments, setDepartments] = useState(items);
+  const [disciplines, setDisciplines] = useState(items);
   const [isOpenedPopup, setIsOpenedPopup] = useState(false);
   const [selectedItem, setSelecetedItem] = useState(null);
   const [pageOfItems, setPageOfItems] = useState([]);
@@ -20,7 +19,7 @@ function DepartmentsList({items, loading}) {
   const [pageSize] = useState(10);
 
   useEffect(() => {
-    setDepartments(items);
+    setDisciplines(items);
   }, [items]);
 
   let onChangePage = (pageOfItems, pageNumber) => {
@@ -29,7 +28,7 @@ function DepartmentsList({items, loading}) {
   }
 
   let handleClickDelete = id => {
-    dispatch(deleteDepartment(id)).then(() => {closePopup()});
+    console.log('Удалить дисциплину', id);
   }
 
   const closePopup = () => {
@@ -50,8 +49,8 @@ function DepartmentsList({items, loading}) {
             <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Название</th>
-              <th scope="col">Университет</th>
+              <th scope="col">Название дисциплины</th>
+              <th scope="col">Преподаватели</th>
               <th />
             </tr>
             </thead>
@@ -60,8 +59,8 @@ function DepartmentsList({items, loading}) {
             {pageOfItems?.map((item, index) => (
               <tr key={item.id}>
                 <th scope="row">{(index+1) + ((currentPage-1)*pageSize)}</th>
-                <td><Link to={`/department/${item.id}`}>{item.title}</Link></td>
-                <td>{item.university?.alias}</td>
+                <td><Link to={`/discipline/${item.id}`}>{item.title}</Link></td>
+                <td>Список преподавателей</td>
                 <td>
                   {currentUser && currentUser.priority < 2 &&
                   <DeleteButton onClick={() => openPopup(item)}/>
@@ -72,22 +71,23 @@ function DepartmentsList({items, loading}) {
             </tbody>
           </table>
 
-          <Pagination items={departments} onChangePage={onChangePage} pageSize={pageSize}/>
-        </> }
+          <Pagination items={disciplines} onChangePage={onChangePage} pageSize={pageSize}/>
+        </>}
 
       {isOpenedPopup &&
       <Popup
         onClose={closePopup}
         title="Подтверждение удаления"
-        text={`Вы действительно хотите удалить факультет "${selectedItem.title}"? Эту операцию невозможно будет отменить!`}
+        text={`Вы действительно хотите удалить дисциплину "${selectedItem.title}"? Эту операцию невозможно будет отменить!`}
         confirmFunc={() => handleClickDelete(selectedItem.id)}
       />}
-    </>);
+    </>
+  );
 }
 
-DepartmentsList.propTypes = {
+DisciplinesList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool
 }
 
-export default DepartmentsList;
+export default DisciplinesList;

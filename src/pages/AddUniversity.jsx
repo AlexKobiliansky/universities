@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import AddInfoLabel from "../components/InfoLabel/AddInfoLabel";
 import {Formik, setIn} from 'formik';
 import * as yup from 'yup';
-import {univerAPI} from "../api/univerAPI";
+import {universityAPI} from "../api/universityAPI";
 import ImgLabel from "../components/ImgLabel/ImgLabel";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {addUniversityRoute, mainRoute, universitiesRoute} from "../config/breadcrumbs";
 import axios from "axios";
-import {departmentsAPI} from "../api/departmentsAPI";
+import {departmentAPI} from "../api/departmentAPI";
 import DepartmentDynamicLabel from "../components/Departments/DepartmentDynamicLabel";
 
 const breadcrumbs = [
@@ -70,14 +70,14 @@ function AddUniversity() {
     }
 
     try {
-      await univerAPI.addUniver(addingUniver);
+      await universityAPI.addUniver(addingUniver);
       alert('Университет успешно добавлен!');
 
       const newUniver = await axios.get('http://localhost:3001/universities?end=1&sort=id&order=desc').then(({data}) => data[0]);
 
       await departments.forEach(item => {
         item.title.length > 0 &&
-          departmentsAPI.addDepartment({title: item.title, universityId: newUniver.id})
+          departmentAPI.addDepartment({title: item.title, universityId: newUniver.id})
             .catch(() => {
               alert('Не удалось добавить факультет');
             })

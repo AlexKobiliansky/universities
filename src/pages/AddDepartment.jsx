@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import SelectLabel from "../components/SelectLabel/SelectLabel";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUniversities} from "../redux/actions/university";
-import {departmentsAPI} from "../api/departmentsAPI";
+import {departmentAPI} from "../api/departmentAPI";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {addDepartmentRoute, departmentsRoute, mainRoute} from "../config/breadcrumbs";
 
@@ -49,7 +49,7 @@ function AddDepartment() {
       universityId: values.universityId,
     }
     
-    departmentsAPI.addDepartment(addingDepartment)
+    departmentAPI.addDepartment(addingDepartment)
       .then(() => {
         alert('Факультет успешно добавлен!');
         resetForm();

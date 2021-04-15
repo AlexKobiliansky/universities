@@ -66,10 +66,10 @@ export default function userReducer (state=defaultState, action) {
 
 
 // action creators
+export const setLoading = loading => ({type: SET_LOADING, payload: loading});
 export const setUniversities = universities => ({type: SET_UNIVERSITIES, payload: universities});
 export const setCurrentUniversity = university => ({type: SET_SINGLE_UNIVERSITY, payload: university});
 export const updateSingleUniversityAC = obj => ({type: UPDATE_SINGLE_UNIVERSITY, payload: obj});
 export const deleteUniversityAC = id => ({type: DELETE_UNIVERSITY, payload: id});
-export const setLoading = loading => ({type: SET_LOADING, payload: loading});
 export const searchQueryUniversity = searchQuery => ({type: SEARCH_QUERY_UNIVERSITY, payload: searchQuery});
 export const setSearchDataUniversity = searchData => ({type: SEARCH_DATA_UNIVERSITY, payload: searchData});

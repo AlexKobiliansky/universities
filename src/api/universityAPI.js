@@ -1,6 +1,11 @@
 import {instance} from "./index";
 
-export const univerAPI = {
+export const universityAPI = {
+
+  getUniversities() {
+    return instance.get(`universities/`);
+  },
+
   getUniver(id) {
     return instance.get(`universities/${id}`)
   },

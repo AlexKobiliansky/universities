@@ -1,6 +1,6 @@
 import {instance} from "./index";
 
-export const departmentsAPI = {
+export const departmentAPI = {
   getDepartments(univerId=null) {
     return instance.get(`departments/?expand=university&${
       univerId !== null ? `universityId=${univerId}` : ''}`);

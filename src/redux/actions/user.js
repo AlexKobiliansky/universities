@@ -1,5 +1,5 @@
 import {setUser} from '../reducers/userReducer';
-import {userAPI} from "../../api/user";
+import {userAPI} from "../../api/userAPI";
 
 export const login = (login, password) => {
   return async dispatch => {

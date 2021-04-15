@@ -49,8 +49,10 @@ export default function departmentReducer (state=defaultState, action) {
   }
 }
 
+// action creators
+export const setLoading = loading => ({type: SET_LOADING_DEPARTMENT, payload: loading});
 export const setDepartments = departments => ({type: SET_DEPARTMENTS, payload: departments});
 export const setSingleDepartmentAC = department => ({type: SET_SINGLE_DEPARTMENT, payload: department});
-export const deleteDepartmentAC = id => ({type: DELETE_DEPARTMENT, payload: id});
-export const setLoading = loading => ({type: SET_LOADING_DEPARTMENT, payload: loading});
 export const updateDepartmentAC = obj => ({type: UPDATE_DEPARTMENT, payload: obj});
+export const deleteDepartmentAC = id => ({type: DELETE_DEPARTMENT, payload: id});
+

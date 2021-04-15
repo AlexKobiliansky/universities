@@ -35,6 +35,10 @@ function Navbar() {
             <li className="nav-item">
               <NavLink to="/teachers" exact className="nav-link" activeClassName="active">Преподаватели</NavLink>
             </li>
+
+          <li className="nav-item">
+            <NavLink to="/disciplines" exact className="nav-link" activeClassName="active">Дисциплины</NavLink>
+          </li>
         </ul>
         <ul className="navbar-nav ml-auto">
           {isAuth
