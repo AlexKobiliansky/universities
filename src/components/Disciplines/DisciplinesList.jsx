@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import DeleteButton from "../UI/DeleteButton";
 import Pagination from "../UI/Pagination";
 import Popup from "../UI/Popup";
+import {deleteDiscipline} from "../../redux/actions/discipline";
 
 function DisciplinesList({items, loading}) {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function DisciplinesList({items, loading}) {
   }
 
   let handleClickDelete = id => {
-    console.log('Удалить дисциплину', id);
+    dispatch(deleteDiscipline(id)).then(() => {closePopup()});
   }
 
   const closePopup = () => {

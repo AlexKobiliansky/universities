@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import AddInfoLabel from "../components/InfoLabel/AddInfoLabel";
-import {Formik, setIn} from 'formik';
+import {Formik} from 'formik';
 import * as yup from 'yup';
 import {universityAPI} from "../api/universityAPI";
 import ImgLabel from "../components/ImgLabel/ImgLabel";

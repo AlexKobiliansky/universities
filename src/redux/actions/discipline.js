@@ -1,5 +1,5 @@
 import {disciplineAPI} from "../../api/disciplineAPI";
-import {setDisciplines, setLoadingDiscipline} from "../reducers/disciplineReducer";
+import {deleteDisciplineAC, setDisciplines, setLoadingDiscipline} from "../reducers/disciplineReducer";
 
 export const fetchDisciplines = (id) => async dispatch  => {
   try {
@@ -8,5 +8,14 @@ export const fetchDisciplines = (id) => async dispatch  => {
     dispatch(setDisciplines(data));
   } catch(e) {
     alert(`Ошибка при загрузке дисциплин: ${e.message}`)
+  }
+};
+
+export const deleteDiscipline = (id) => async dispatch  => {
+  try {
+    await disciplineAPI.deleteDiscipline(id);
+    dispatch(deleteDisciplineAC(id));
+  } catch(e) {
+    alert(`Не удалось удалить дисциплину: ${e.message}`)
   }
 };
