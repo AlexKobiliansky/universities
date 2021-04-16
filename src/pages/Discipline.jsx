@@ -31,7 +31,7 @@ function Discipline() {
   const [changeUniver, setChangeUniver] = useState(false);
 
   const [breadcrumbRoutes, setBreadcrumbRoutes] = useState([]);
-  
+
   useLayoutEffect(() => {
     dispatch(fetchSingleDiscipline(disciplineId));
     dispatch(fetchUniversities());
