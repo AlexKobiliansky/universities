@@ -8,8 +8,10 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
+    "concurrently": "^6.0.2",
     "formik": "^2.2.6",
     "json-server-relationship": "^0.14.5",
+    "lodash": "^4.17.21",
     "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -28,7 +30,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "json-server": "json-server-relationship --watch ./src/assets/db.json --port 3001"
+    "json-server": "json-server-relationship --watch ./src/assets/db.json --port 3001",
+    "dev": "concurrently \"npm run json-server\" \"npm run start\""
   },
   "eslintConfig": {
     "extends": [

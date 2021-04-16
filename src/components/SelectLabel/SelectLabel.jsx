@@ -6,7 +6,6 @@ import {useSelector} from "react-redux";
 function SelectLabel({title, currentValue, values, names, entity, onChange, error}) {
   const {currentUser} = useSelector(({user}) => user);
 
-
   const handleChange = (e) => {
     onChange(entity, e.target.value);
   }

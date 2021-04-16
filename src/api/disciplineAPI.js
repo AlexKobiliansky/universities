@@ -7,7 +7,7 @@ export const disciplineAPI = {
   },
 
   getDiscipline(id) {
-    return instance.get(`disciplines/${id}`)
+    return instance.get(`disciplines/${id}?expand=department`)
   },
 
   editDiscipline(id, object) {

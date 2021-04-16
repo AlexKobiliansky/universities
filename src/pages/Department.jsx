@@ -48,7 +48,7 @@ function Department() {
   }
 
   const onChangeSelect = (selectEntity, value) => {
-    dispatch(updateDepartment(departmentId, {[selectEntity]: value}));
+    dispatch(updateDepartment(departmentId, {[selectEntity]: parseInt(value)}));
   }
 
   return (

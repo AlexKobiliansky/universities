@@ -46,7 +46,7 @@ function AddDepartment() {
 
     const addingDepartment = {
       title: values.title,
-      universityId: values.universityId,
+      universityId: parseInt(values.universityId),
     }
     
     departmentAPI.addDepartment(addingDepartment)

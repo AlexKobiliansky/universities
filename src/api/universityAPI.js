@@ -7,7 +7,7 @@ export const universityAPI = {
   },
 
   getUniver(id) {
-    return instance.get(`universities/${id}`)
+    return instance.get(`universities/${id}?embed=departments`)
   },
 
   editUniver(id, object) {
