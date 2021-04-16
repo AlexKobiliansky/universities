@@ -80,7 +80,7 @@ function Universities() {
         loading={loading}
       />}
 
-      {currentUser && currentUser.priority < 2 && !loading &&
+      {currentUser?.priority < 2 && !loading &&
       <div className="add-line">
         <Link to="/add/university" className="btn btn-primary">Добавить новый университет</Link>
       </div>

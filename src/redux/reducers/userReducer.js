@@ -1,7 +1,7 @@
 import {SET_USER, LOGOUT} from "../types";
 
 const defaultState = {
-  currentUser: {},
+  currentUser: null,
   isAuth: false
 }
 
@@ -17,7 +17,7 @@ export default function userReducer (state=defaultState, action) {
       localStorage.removeItem('userData')
       return {
         ...state,
-        currentUser: {},
+        currentUser: null,
         isAuth: false
       }
     default:

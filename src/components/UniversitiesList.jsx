@@ -115,7 +115,7 @@ function UniversitiesList({items, loading}) {
                 </td>
 
                 <td className="align-middle">
-                  {currentUser && currentUser.priority < 2 &&
+                  {currentUser?.priority < 2 &&
                   <DeleteButton onClick={() => openPopup(item)}/>
                   }
                 </td>

@@ -63,7 +63,7 @@ function DisciplinesList({items, loading}) {
                 <td><Link to={`/discipline/${item.id}`}>{item.title}</Link></td>
                 <td>Список преподавателей</td>
                 <td>
-                  {currentUser && currentUser.priority < 2 &&
+                  {currentUser?.priority < 2 &&
                   <DeleteButton onClick={() => openPopup(item)}/>
                   }
                 </td>

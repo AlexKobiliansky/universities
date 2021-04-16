@@ -1,9 +1,8 @@
 import {
   SET_UNIVERSITIES,
-  SET_LOADING,
   SET_SINGLE_UNIVERSITY,
   UPDATE_SINGLE_UNIVERSITY,
-  DELETE_UNIVERSITY, SEARCH_QUERY_UNIVERSITY, SEARCH_DATA_UNIVERSITY
+  DELETE_UNIVERSITY, SEARCH_QUERY_UNIVERSITY, SEARCH_DATA_UNIVERSITY, SET_LOADING_UNIVERSITY
 } from "../types";
 
 const defaultState = {
@@ -19,7 +18,7 @@ const defaultState = {
 
 export default function userReducer (state=defaultState, action) {
   switch (action.type) {
-    case SET_LOADING:
+    case SET_LOADING_UNIVERSITY:
       return {
         ...state,
         isLoading: action.payload
@@ -66,7 +65,7 @@ export default function userReducer (state=defaultState, action) {
 
 
 // action creators
-export const setLoading = loading => ({type: SET_LOADING, payload: loading});
+export const setLoading = loading => ({type: SET_LOADING_UNIVERSITY, payload: loading});
 export const setUniversities = universities => ({type: SET_UNIVERSITIES, payload: universities});
 export const setCurrentUniversity = university => ({type: SET_SINGLE_UNIVERSITY, payload: university});
 export const updateSingleUniversityAC = obj => ({type: UPDATE_SINGLE_UNIVERSITY, payload: obj});

@@ -35,7 +35,7 @@ function InfoLabel({title, value, entity, onEdit}) {
             onBlur={deactivateEditMode}
           /> }
 
-        {currentUser && currentUser.priority < 2 &&
+        {currentUser?.priority < 2 &&
         <div className="info-label-change" onClick={activateEditMode}>
           <i className="bi bi-pencil-square"/>
         </div>

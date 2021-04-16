@@ -12,6 +12,10 @@ export const disciplinesRoute = () => ({path: '/disciplines', title: 'Дисци
 export const singleDisciplineRoute = (id, title) => ({path: `/discipline/${id}`, title});
 export const addDisciplineRoute = () => ({path: '/add/discipline', title: 'Добавить Дисциплину'});
 
+export const studentsRoute = () => ({path: '/students', title: 'Студенты'});
+export const singleStudentRoute = (id, title) => ({path: `/student/${id}`, title});
+export const addStudentRoute = () => ({path: '/add/student', title: 'Добавить студента'});
+
 
 
 

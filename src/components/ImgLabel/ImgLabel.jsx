@@ -46,7 +46,7 @@ function ImgLabel({img, onEdit, onDelete}) {
         </div>
       </div> }
 
-      {currentUser && currentUser.priority < 2 &&
+      {currentUser?.priority < 2 &&
       <div className="img-label-buttons">
         <input type="file" ref={hiddenFileInput} onChange={handleChange}/>
 

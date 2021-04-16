@@ -5,16 +5,13 @@ import {
   mainRoute
 } from "../config/breadcrumbs";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchDisciplines} from "../redux/actions/discipline";
 import {fetchDepartments} from "../redux/actions/department";
 import * as yup from "yup";
-import {departmentAPI} from "../api/departmentAPI";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import AddInfoLabel from "../components/InfoLabel/AddInfoLabel";
 import SelectLabel from "../components/SelectLabel/SelectLabel";
 import {Formik} from "formik";
 import {disciplineAPI} from "../api/disciplineAPI";
-
 
 const breadcrumbs = [
   mainRoute(),
@@ -122,8 +119,6 @@ function AddDiscipline() {
           </form>
         )}
       </Formik>
-
-
     </div>
   );
 }

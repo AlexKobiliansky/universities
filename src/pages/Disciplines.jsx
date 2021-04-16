@@ -26,7 +26,7 @@ function Disciplines() {
 
       <DisciplinesList items={disciplines} loading={loading} />
 
-      {currentUser && currentUser.priority < 2 && !loading &&
+      {currentUser?.priority < 2 && !loading &&
       <div className="add-line">
         <Link to="/add/discipline" className="btn btn-primary">Добавить дисциплину</Link>
       </div>
