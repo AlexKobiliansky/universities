@@ -19,6 +19,7 @@ import AddDepartment from "./pages/AddDepartment";
 import Main from "./pages/Main";
 import Disciplines from "./pages/Disciplines";
 import Discipline from "./pages/Discipline";
+import AddDiscipline from "./pages/AddDiscipline";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
             <NoAuthRoute path='/registration' component={Registration} />
             <AdminRoute path="/add/university" component={AddUniversity} />
             <AdminRoute path="/add/department" component={AddDepartment} />
+            <AdminRoute path="/add/discipline" component={AddDiscipline} />
             <Redirect to='/'/>
           </Switch>
         </div>
