@@ -20,6 +20,7 @@ import Main from "./pages/Main";
 import Disciplines from "./pages/Disciplines";
 import Discipline from "./pages/Discipline";
 import AddDiscipline from "./pages/AddDiscipline";
+import Student from "./pages/Student";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
             <Route path="/university/:id" component={University} exact/>
             <Route path="/department/:id" component={Department} exact/>
             <Route path="/discipline/:id" component={Discipline} exact/>
+            <Route path="/student/:id" component={Student} exact/>
             <NoAuthRoute path='/login' component={Login} />
             <NoAuthRoute path='/registration' component={Registration} />
             <AdminRoute path="/add/university" component={AddUniversity} />

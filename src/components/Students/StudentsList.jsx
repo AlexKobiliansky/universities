@@ -65,7 +65,9 @@ function StudentsList({items, loading}) {
                     img={item.avatarUrl}
                   />
                 </td>
-                <td className="align-middle">{item.firstName} {item.lastName}</td>
+                <td className="align-middle">
+                  <Link to={`/student/${item.id}`}>{item.firstName} {item.lastName}</Link>
+                </td>
                 <td className="align-middle">
                   {currentUser
                     ? item.email && <a href={`mailto:${item.email}`}>{item.email}</a>
