@@ -38,7 +38,6 @@ export const updateStudent = (studentId, obj) => async dispatch  => {
 
 export const deleteStudent = (id) => async dispatch  => {
   try {
-    console.log(id)
     await studentAPI.deleteStudent(id);
     dispatch(deleteStudentAC(id));
   } catch(e) {
