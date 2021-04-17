@@ -21,6 +21,7 @@ import Disciplines from "./pages/Disciplines";
 import Discipline from "./pages/Discipline";
 import AddDiscipline from "./pages/AddDiscipline";
 import Student from "./pages/Student";
+import AddStudent from "./pages/AddStudent";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
             <AdminRoute path="/add/university" component={AddUniversity} />
             <AdminRoute path="/add/department" component={AddDepartment} />
             <AdminRoute path="/add/discipline" component={AddDiscipline} />
+            <AdminRoute path="/add/student" component={AddStudent} />
             <Redirect to='/'/>
           </Switch>
         </div>

@@ -64,7 +64,7 @@ function AddDiscipline() {
   }
 
   return (
-    <div>
+    <>
       <Breadcrumb routes = {breadcrumbRoutes} />
       <h1>Добавить дисциплину</h1>
 
@@ -119,7 +119,7 @@ function AddDiscipline() {
           </form>
         )}
       </Formik>
-    </div>
+    </>
   );
 }
 

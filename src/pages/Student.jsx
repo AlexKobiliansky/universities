@@ -1,34 +1,73 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {fetchSingleUniversity, updateSingleUniversity} from "../redux/actions/university";
-import {fetchDepartments} from "../redux/actions/department";
+import {fetchSingleUniversity, fetchUniversities} from "../redux/actions/university";
 import {fetchSingleStudent, updateStudent} from "../redux/actions/student";
 import {
   mainRoute,
   singleStudentRoute,
-  singleUniversityRoute,
-  studentsRoute,
-  universitiesRoute
+  studentsRoute
 } from "../config/breadcrumbs";
 import Spinner from "../components/UI/Spinner";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import ImgLabel from "../components/ImgLabel/ImgLabel";
 import InfoLabel from "../components/InfoLabel/InfoLabel";
+import isEmpty from "lodash/isEmpty";
+import SelectLabel from "../components/SelectLabel/SelectLabel";
 
-function Student(props) {
+function Student() {
   const dispatch = useDispatch();
   const student = useSelector(({student}) => student.currentStudent);
   const loading = useSelector(({student}) => student.isLoading);
   const [breadcrumbRoutes, setBreadcrumbRoutes] = useState([]);
   const studentId = useParams().id;
 
-  useEffect(() => {
+  const universities = useSelector(({university}) => university.universities);
+  const [selectUniversitiesValues, setSelectUniversitiesValues] = useState([]);
+  const [selectUniversitiesNames, setSelectUniversitiesNames] = useState([]);
+
+  const university = useSelector(({university}) => university.currentUniversity);
+  const [selectDepartmentsValues, setSelectDepartmentsValues] = useState([]);
+  const [selectDepartmentsNames, setSelectDepartmentsNames] = useState([]);
+  const [changeUniver, setChangeUniver] = useState(false);
+
+  useLayoutEffect(() => {
     dispatch(fetchSingleStudent(studentId));
+    dispatch(fetchUniversities());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studentId]);
 
-  console.log('student', student)
+  useEffect(() => {
+    if (!isEmpty(university)) {
+      setSelectDepartmentsValues(university?.departments.map(item => item.id));
+      setSelectDepartmentsNames(university?.departments.map(item => item.title));
+    }
+
+    if (changeUniver) {
+      setChangeUniver(false);
+      dispatch(updateStudent(studentId, {"departmentId": parseInt(university.departments[0]?.id)}));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [university]);
+
+  useEffect(() => {
+    setSelectUniversitiesValues(universities?.map(item => item.id));
+    setSelectUniversitiesNames(universities?.map(item => item.title));
+
+    if (!isEmpty(student)) {
+      dispatch(fetchSingleUniversity(student?.department?.universityId));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [universities]);
+
+  const onChangeDepartmentsSelect = (selectEntity, value) => {
+    dispatch(updateStudent(studentId, {[selectEntity]: parseInt(value)}));
+  }
+
+  const onChangeUniversitiesSelect = (univerId, id) => {
+    dispatch(fetchSingleUniversity(id));
+    setChangeUniver(true);
+  }
 
   useEffect(() => {
     setBreadcrumbRoutes([
@@ -80,6 +119,26 @@ function Student(props) {
               </div>
             </div>
           </div>
+
+          <SelectLabel
+            title="Институт"
+            currentValue={university.id}
+            values={selectUniversitiesValues}
+            names={selectUniversitiesNames}
+            entity="universityId"
+            onChange={onChangeUniversitiesSelect}
+          />
+
+          <SelectLabel
+            title="Факультет"
+            currentValue={student.departmentId}
+            values={selectDepartmentsValues}
+            names={selectDepartmentsNames}
+            entity="departmentId"
+            onChange={onChangeDepartmentsSelect}
+          />
+
+
         </div>}
     </>
   );

@@ -12,7 +12,7 @@ function SelectLabel({title, currentValue, values, names, entity, onChange, erro
 
   return (
     <div className="select-label">
-      <div className="select-label-title">{title}</div>
+      <div className="select-label-title">{title}:</div>
       <div className="select-label-value">
         <select
             name={title}

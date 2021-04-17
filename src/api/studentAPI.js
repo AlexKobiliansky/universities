@@ -7,7 +7,7 @@ export const studentAPI = {
   },
 
   getStudent(id) {
-    return instance.get(`students/${id}`)
+    return instance.get(`students/${id}?expand=department`)
   },
 
   editStudent(id, object) {
