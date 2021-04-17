@@ -1,4 +1,10 @@
-import {deleteTeacherAC, setLoadingTeacher, setTeachers} from "../reducers/teacherReducer";
+import {
+  deleteTeacherAC,
+  setLoadingTeacher,
+  setSingleTeacherAC,
+  setTeachers,
+  updateTeacherAC
+} from "../reducers/teacherReducer";
 import {teacherAPI} from "../../api/teacherAPI";
 
 export const fetchTeachers = (id) => async dispatch  => {
@@ -11,6 +17,24 @@ export const fetchTeachers = (id) => async dispatch  => {
   }
 };
 
+export const fetchSingleTeacher = (id) => async dispatch  => {
+  try {
+    dispatch(setLoadingTeacher(true));
+    const {data} = await teacherAPI.getTeacher(id);
+    dispatch(setSingleTeacherAC(data));
+  } catch(e) {
+    alert(e.message)
+  }
+};
+
+export const updateTeacher = (teacherId, obj) => async dispatch  => {
+  try {
+    teacherAPI.editTeacher(teacherId, obj);
+    dispatch(updateTeacherAC(obj));
+  } catch(e) {
+    alert(`Не удалось обновить данные: ${e.message}`)
+  }
+};
 
 export const deleteTeacher = (id) => async dispatch  => {
   try {

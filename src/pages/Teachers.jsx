@@ -28,7 +28,7 @@ function Teachers() {
 
       {currentUser?.priority < 2 && !loading &&
       <div className="add-line">
-        <Link to="/add/student" className="btn btn-primary">Добавить нового преподавателя</Link>
+        <Link to="/add/teacher" className="btn btn-primary">Добавить нового преподавателя</Link>
       </div>}
     </>
   );

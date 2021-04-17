@@ -22,6 +22,8 @@ import Discipline from "./pages/Discipline";
 import AddDiscipline from "./pages/AddDiscipline";
 import Student from "./pages/Student";
 import AddStudent from "./pages/AddStudent";
+import Teacher from "./pages/Teacher";
+import AddTeacher from "./pages/AddTeacher";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,12 +49,14 @@ function App() {
             <Route path="/department/:id" component={Department} exact/>
             <Route path="/discipline/:id" component={Discipline} exact/>
             <Route path="/student/:id" component={Student} exact/>
+            <Route path="/teacher/:id" component={Teacher} exact/>
             <NoAuthRoute path='/login' component={Login} />
             <NoAuthRoute path='/registration' component={Registration} />
             <AdminRoute path="/add/university" component={AddUniversity} />
             <AdminRoute path="/add/department" component={AddDepartment} />
             <AdminRoute path="/add/discipline" component={AddDiscipline} />
             <AdminRoute path="/add/student" component={AddStudent} />
+            <AdminRoute path="/add/teacher" component={AddTeacher} />
             <Redirect to='/'/>
           </Switch>
         </div>
