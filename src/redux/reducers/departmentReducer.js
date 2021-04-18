@@ -3,13 +3,15 @@ import {
   DELETE_DEPARTMENT,
   SET_LOADING_DEPARTMENT,
   SET_SINGLE_DEPARTMENT,
-  UPDATE_DEPARTMENT
+  UPDATE_DEPARTMENT, SEARCH_QUERY_DEPARTMENT, SEARCH_DATA_DEPARTMENT
 } from "../types";
 
 const defaultState = {
   departments: [],
   isLoading: false,
-  currentDepartment: {}
+  currentDepartment: {},
+  search: '',
+  searchData: [],
 }
 
 export default function departmentReducer (state=defaultState, action) {
@@ -44,6 +46,16 @@ export default function departmentReducer (state=defaultState, action) {
         ...state,
         departments: state.departments.filter(item => item.id !== action.payload),
       }
+    case SEARCH_QUERY_DEPARTMENT:
+      return {
+        ...state,
+        search: action.payload
+      }
+    case SEARCH_DATA_DEPARTMENT:
+      return {
+        ...state,
+        searchData: action.payload
+      }
     default:
       return state
   }
@@ -55,4 +67,6 @@ export const setDepartments = departments => ({type: SET_DEPARTMENTS, payload: d
 export const setSingleDepartmentAC = department => ({type: SET_SINGLE_DEPARTMENT, payload: department});
 export const updateDepartmentAC = obj => ({type: UPDATE_DEPARTMENT, payload: obj});
 export const deleteDepartmentAC = id => ({type: DELETE_DEPARTMENT, payload: id});
+export const searchQueryDepartment = searchQuery => ({type: SEARCH_QUERY_DEPARTMENT, payload: searchQuery});
+export const setSearchDataDepartment = searchData => ({type: SEARCH_DATA_DEPARTMENT, payload: searchData});
 

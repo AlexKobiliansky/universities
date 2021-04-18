@@ -11,9 +11,6 @@ const defaultState = {
   currentUniversity: {},
   search: '',
   searchData: [],
-  sortBy: '',
-  sortOrder: null,
-  sortData: []
 }
 
 export default function userReducer (state=defaultState, action) {
