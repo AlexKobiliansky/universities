@@ -10,6 +10,7 @@ import {
   setSearchDataUniversity
 } from "../redux/reducers/universityReducer";
 import SearchLabel from "../components/SearchLabel/SearchLabel";
+import {wrapToMark} from "../utils";
 
 const breadcrumbs = [mainRoute(), universitiesRoute()]
 
@@ -38,26 +39,11 @@ function Universities() {
       item.city.toLocaleLowerCase().includes(str)
     )
       .map(item => {
-        let newTitle = item.title.replace(
-          new RegExp(str, 'gi'),
-          match => `<mark>${match}</mark>`
-        );
-
-        let newAlias = item.alias.replace(
-          new RegExp(str, 'gi'),
-          match => `<mark>${match}</mark>`
-        );
-
-        let newCity = item.city.replace(
-          new RegExp(str, 'gi'),
-          match => `<mark>${match}</mark>`
-        );
-
         return {
           ...item,
-          title: newTitle,
-          alias: newAlias,
-          city: newCity
+          title: wrapToMark(item.title, str),
+          alias: wrapToMark(item.alias, str),
+          city: wrapToMark(item.city, str)
         }
       });
 

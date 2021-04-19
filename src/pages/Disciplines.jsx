@@ -8,6 +8,7 @@ import DisciplinesList from "../components/Disciplines/DisciplinesList";
 import {searchQueryDepartment, setSearchDataDepartment} from "../redux/reducers/departmentReducer";
 import {searchQueryDiscipline, setSearchDataDiscipline} from "../redux/reducers/disciplineReducer";
 import SearchLabel from "../components/SearchLabel/SearchLabel";
+import {wrapToMark} from "../utils";
 
 const breadcrumbs = [mainRoute(), disciplinesRoute()];
 
@@ -32,14 +33,9 @@ function Disciplines() {
       item.title.toLowerCase().includes(str)
     )
       .map(item => {
-        let newTitle = item.title.replace(
-          new RegExp(str, 'gi'),
-          match => `<mark>${match}</mark>`
-        );
-
         return {
           ...item,
-          title: newTitle,
+          title: wrapToMark(item.title, str),
         }
       });
 

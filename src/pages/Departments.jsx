@@ -8,6 +8,7 @@ import {departmentsRoute, mainRoute} from "../config/breadcrumbs";
 import {searchQueryUniversity, setSearchDataUniversity} from "../redux/reducers/universityReducer";
 import {searchQueryDepartment, setSearchDataDepartment} from "../redux/reducers/departmentReducer";
 import SearchLabel from "../components/SearchLabel/SearchLabel";
+import {wrapToMark} from "../utils";
 
 const breadcrumbs = [mainRoute(), departmentsRoute()];
 
@@ -33,22 +34,12 @@ function Departments() {
       item.university.alias.toLowerCase().includes(str)
     )
       .map(item => {
-        let newTitle = item.title.replace(
-          new RegExp(str, 'gi'),
-          match => `<mark>${match}</mark>`
-        );
-
-        let newUniverAlias = item.university.alias.replace(
-          new RegExp(str, 'gi'),
-          match => `<mark>${match}</mark>`
-        )
-
         return {
           ...item,
-          title: newTitle,
+          title: wrapToMark(item.title, str),
           university: {
             ...item.university,
-            alias: newUniverAlias
+            alias: wrapToMark(item.university.alias, str)
           }
         }
       });

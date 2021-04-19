@@ -41,7 +41,7 @@ function DisciplinesList({items, loading}) {
 
     setDisciplines([...disciplines]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy, sortOrderASC])
+  }, [sortBy, sortOrderASC]);
 
   let onChangePage = (pageOfItems, pageNumber) => {
     setPageOfItems(pageOfItems);
