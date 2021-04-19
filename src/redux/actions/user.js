@@ -18,7 +18,7 @@ export const login = (login, password) => {
         return user;
       }
     } catch (e) {
-      console.log(e.response);
+      alert(e.response);
     }
   }
 }

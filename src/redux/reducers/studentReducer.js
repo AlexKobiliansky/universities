@@ -1,5 +1,5 @@
 import {
-  DELETE_STUDENT, SEARCH_DATA_DEPARTMENT, SEARCH_DATA_STUDENT, SEARCH_QUERY_DEPARTMENT, SEARCH_QUERY_STUDENT,
+  DELETE_STUDENT, SEARCH_DATA_STUDENT, SEARCH_QUERY_STUDENT,
   SET_LOADING_STUDENT,
   SET_SINGLE_STUDENT,
   SET_STUDENTS,
@@ -47,7 +47,6 @@ export default function studentReducer (state=defaultState, action) {
         students: state.students.filter(item => item.id !== action.payload),
       }
     case SEARCH_QUERY_STUDENT:
-      console.log(action.payload)
       return {
         ...state,
         search: action.payload

@@ -5,7 +5,6 @@ import {fetchDepartments} from "../redux/actions/department";
 import {Link} from "react-router-dom";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {departmentsRoute, mainRoute} from "../config/breadcrumbs";
-import {searchQueryUniversity, setSearchDataUniversity} from "../redux/reducers/universityReducer";
 import {searchQueryDepartment, setSearchDataDepartment} from "../redux/reducers/departmentReducer";
 import SearchLabel from "../components/SearchLabel/SearchLabel";
 import {wrapToMark} from "../utils";

@@ -7,6 +7,6 @@ export const uploadImage = async (uploadedFile) => {
 
   return axios.post('https://api.cloudinary.com/v1_1/do1zs5utw/image/upload', formData).then(({data}) => {
     return data.url;
-  }).catch(e => console.log(e.message));
+  }).catch(e => alert(e.message));
 
 }

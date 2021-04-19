@@ -1,5 +1,5 @@
 import {
-  DELETE_TEACHER,
+  DELETE_TEACHER, SEARCH_DATA_TEACHER, SEARCH_QUERY_TEACHER,
   SET_LOADING_TEACHER,
   SET_SINGLE_TEACHER,
   SET_TEACHERS,
@@ -9,7 +9,9 @@ import {
 const defaultState = {
   teachers: [],
   isLoading: false,
-  currentTeacher: {}
+  currentTeacher: {},
+  search: '',
+  searchData: [],
 }
 
 export default function teacherReducer (state=defaultState, action) {
@@ -44,6 +46,16 @@ export default function teacherReducer (state=defaultState, action) {
         ...state,
         teachers: state.teachers.filter(item => item.id !== action.payload),
       }
+    case SEARCH_QUERY_TEACHER:
+      return {
+        ...state,
+        search: action.payload
+      }
+    case SEARCH_DATA_TEACHER:
+      return {
+        ...state,
+        searchData: action.payload
+      }
     default:
       return state
   }
@@ -55,3 +67,5 @@ export const setTeachers = students => ({type: SET_TEACHERS, payload: students})
 export const setSingleTeacherAC = student => ({type: SET_SINGLE_TEACHER, payload: student});
 export const updateTeacherAC = obj => ({type: UPDATE_TEACHER, payload: obj});
 export const deleteTeacherAC = id => ({type: DELETE_TEACHER, payload: id});
+export const searchQueryTeacher = searchQuery => ({type: SEARCH_QUERY_TEACHER, payload: searchQuery});
+export const setSearchDataTeacher = searchData => ({type: SEARCH_DATA_TEACHER, payload: searchData});

@@ -5,7 +5,6 @@ import {fetchStudents} from "../redux/actions/student";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {Link} from "react-router-dom";
 import StudentsList from "../components/Students/StudentsList";
-import {searchQueryDepartment, setSearchDataDepartment} from "../redux/reducers/departmentReducer";
 import {searchQueryStudent, setSearchDataStudent} from "../redux/reducers/studentReducer";
 import SearchLabel from "../components/SearchLabel/SearchLabel";
 import {wrapToMark} from "../utils";

@@ -5,7 +5,6 @@ import {fetchDisciplines} from "../redux/actions/discipline";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {Link} from "react-router-dom";
 import DisciplinesList from "../components/Disciplines/DisciplinesList";
-import {searchQueryDepartment, setSearchDataDepartment} from "../redux/reducers/departmentReducer";
 import {searchQueryDiscipline, setSearchDataDiscipline} from "../redux/reducers/disciplineReducer";
 import SearchLabel from "../components/SearchLabel/SearchLabel";
 import {wrapToMark} from "../utils";
