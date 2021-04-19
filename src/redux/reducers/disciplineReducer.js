@@ -1,5 +1,5 @@
 import {
-  DELETE_DISCIPLINE,
+  DELETE_DISCIPLINE, SEARCH_DATA_DEPARTMENT, SEARCH_DATA_DISCIPLINE, SEARCH_QUERY_DEPARTMENT, SEARCH_QUERY_DISCIPLINE,
   SET_DISCIPLINES,
   SET_LOADING_DISCIPLINE,
   SET_SINGLE_DISCIPLINE, UPDATE_DISCIPLINE
@@ -8,7 +8,9 @@ import {
 const defaultState = {
   departments: [],
   isLoading: false,
-  currentDiscipline: {}
+  currentDiscipline: {},
+  search: '',
+  searchData: [],
 }
 
 export default function disciplineReducer (state=defaultState, action) {
@@ -43,6 +45,16 @@ export default function disciplineReducer (state=defaultState, action) {
         ...state,
         disciplines: state.disciplines.filter(item => item.id !== action.payload),
       }
+    case SEARCH_QUERY_DISCIPLINE:
+      return {
+        ...state,
+        search: action.payload
+      }
+    case SEARCH_DATA_DISCIPLINE:
+      return {
+        ...state,
+        searchData: action.payload
+      }
     default:
       return state
   }
@@ -54,3 +66,5 @@ export const setDisciplines = disciplines => ({type: SET_DISCIPLINES, payload: d
 export const setSingleDisciplineAC = department => ({type: SET_SINGLE_DISCIPLINE, payload: department});
 export const updateDisciplineAC = obj => ({type: UPDATE_DISCIPLINE, payload: obj});
 export const deleteDisciplineAC = id => ({type: DELETE_DISCIPLINE, payload: id});
+export const searchQueryDiscipline = searchQuery => ({type: SEARCH_QUERY_DISCIPLINE, payload: searchQuery});
+export const setSearchDataDiscipline = searchData => ({type: SEARCH_DATA_DISCIPLINE, payload: searchData});

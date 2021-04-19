@@ -7,6 +7,9 @@ import DeleteButton from "../UI/DeleteButton";
 import Pagination from "../UI/Pagination";
 import Popup from "../UI/Popup";
 import {deleteDiscipline} from "../../redux/actions/discipline";
+import classnames from "classnames";
+
+const TITLE = 'title';
 
 function DisciplinesList({items, loading}) {
   const dispatch = useDispatch();
@@ -18,10 +21,27 @@ function DisciplinesList({items, loading}) {
   const [pageOfItems, setPageOfItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrderASC, setSortOrderASC] = useState(true);
 
   useEffect(() => {
     setDisciplines(items);
   }, [items]);
+
+  useEffect(() => {
+    switch (sortBy) {
+      case TITLE:
+        sortOrderASC
+          ? disciplines.sort((a, b) => b.title < a.title ? 1 : -1)
+          : disciplines.sort((a, b) => b.title > a.title ? 1 : -1);
+        break;
+      default:
+        return
+    }
+
+    setDisciplines([...disciplines]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortBy, sortOrderASC])
 
   let onChangePage = (pageOfItems, pageNumber) => {
     setPageOfItems(pageOfItems);
@@ -41,6 +61,11 @@ function DisciplinesList({items, loading}) {
     setIsOpenedPopup(true);
   }
 
+  const handleSort = (sortEntity) => {
+    sortEntity !== sortBy ? setSortOrderASC(true) : setSortOrderASC(!sortOrderASC);
+    setSortBy(sortEntity);
+  }
+
   return (
     <>
       {loading
@@ -50,7 +75,10 @@ function DisciplinesList({items, loading}) {
             <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Название дисциплины</th>
+              <th scope="col"
+                  onClick={() => handleSort(TITLE)}
+                  className={classnames('sorting-head', {'sorting': sortBy === TITLE}, {'desc': !sortOrderASC})}
+              >Название дисциплины</th>
               <th scope="col">Преподаватели</th>
               <th />
             </tr>
@@ -60,12 +88,11 @@ function DisciplinesList({items, loading}) {
             {pageOfItems?.map((item, index) => (
               <tr key={item.id}>
                 <th scope="row">{(index+1) + ((currentPage-1)*pageSize)}</th>
-                <td><Link to={`/discipline/${item.id}`}>{item.title}</Link></td>
+                <td><Link to={`/discipline/${item.id}`} dangerouslySetInnerHTML={{__html: item.title}} /></td>
                 <td>Список преподавателей</td>
                 <td>
                   {currentUser?.priority < 2 &&
-                  <DeleteButton onClick={() => openPopup(item)}/>
-                  }
+                  <DeleteButton onClick={() => openPopup(item)}/>}
                 </td>
               </tr>
             ))}
@@ -79,7 +106,7 @@ function DisciplinesList({items, loading}) {
       <Popup
         onClose={closePopup}
         title="Подтверждение удаления"
-        text={`Вы действительно хотите удалить дисциплину "${selectedItem.title}"? Эту операцию невозможно будет отменить!`}
+        text={`Вы действительно хотите удалить дисциплину <strong>"${selectedItem.title}"</strong>? Эту операцию невозможно будет отменить!`}
         confirmFunc={() => handleClickDelete(selectedItem.id)}
       />}
     </>

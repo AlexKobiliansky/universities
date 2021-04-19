@@ -5,6 +5,9 @@ import {fetchDisciplines} from "../redux/actions/discipline";
 import Breadcrumb from "../components/UI/Breadcrumb";
 import {Link} from "react-router-dom";
 import DisciplinesList from "../components/Disciplines/DisciplinesList";
+import {searchQueryDepartment, setSearchDataDepartment} from "../redux/reducers/departmentReducer";
+import {searchQueryDiscipline, setSearchDataDiscipline} from "../redux/reducers/disciplineReducer";
+import SearchLabel from "../components/SearchLabel/SearchLabel";
 
 const breadcrumbs = [mainRoute(), disciplinesRoute()];
 
@@ -13,18 +16,50 @@ function Disciplines() {
   const disciplines = useSelector(({discipline}) => discipline.disciplines);
   const {currentUser} = useSelector(({user}) => user);
   const loading = useSelector(({discipline}) => discipline.isLoading);
+  const search = useSelector(({discipline}) => discipline.search);
+  const searchData = useSelector(({discipline}) => discipline.searchData);
   const [breadcrumbRoutes] = useState(breadcrumbs);
 
   useEffect(() => {
     dispatch(fetchDisciplines()); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleSearch = (e) => {
+    let str = e.target.value.toLowerCase();
+    dispatch(searchQueryDiscipline(str));
+
+    const newArr = disciplines.filter(item =>
+      item.title.toLowerCase().includes(str)
+    )
+      .map(item => {
+        let newTitle = item.title.replace(
+          new RegExp(str, 'gi'),
+          match => `<mark>${match}</mark>`
+        );
+
+        return {
+          ...item,
+          title: newTitle,
+        }
+      });
+
+    dispatch(setSearchDataDiscipline(newArr));
+  }
+
   return (
     <>
       <Breadcrumb routes = {breadcrumbRoutes} />
       <h1>Дисциплины</h1>
 
-      <DisciplinesList items={disciplines} loading={loading} />
+      <SearchLabel
+        placeholder="Поиск по дисциплинам"
+        onInput={handleSearch}
+        currValue={search}
+      />
+
+      <DisciplinesList
+        items={search.length > 0 ? searchData : disciplines}
+        loading={loading} />
 
       {currentUser?.priority < 2 && !loading &&
       <div className="add-line">

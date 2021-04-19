@@ -48,7 +48,7 @@ function DepartmentsList({items, loading}) {
 
     setDepartments([...departments]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy, sortOrderASC])
+  }, [sortBy, sortOrderASC]);
 
   let onChangePage = (pageOfItems, pageNumber) => {
     setPageOfItems(pageOfItems);
@@ -117,7 +117,7 @@ function DepartmentsList({items, loading}) {
       <Popup
         onClose={closePopup}
         title="Подтверждение удаления"
-        text={`Вы действительно хотите удалить факультет "${selectedItem.title}"? Эту операцию невозможно будет отменить!`}
+        text={`Вы действительно хотите удалить факультет <strong>"${selectedItem.title}"</strong>? Эту операцию невозможно будет отменить!`}
         confirmFunc={() => handleClickDelete(selectedItem.id)}
       />}
     </>);
